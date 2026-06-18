@@ -1,0 +1,324 @@
+{
+  "perfect_matches": {},
+  "manual_review_list": [
+    {
+      "query": "change a bicycle tire",
+      "url": "https://www.wikihow.com/Replace-a-Bicycle-Tire",
+      "rate": 0.5833333333333334,
+      "url_relevance": 0.917,
+      "steps": [
+        {
+          "step": "Put your bicycle on its side with the chain facing up.",
+          "entities": [
+            {
+              "chunk": "bicycle",
+              "entity": "Bicycle",
+              "score": 1.0,
+              "matched": true
+            },
+            {
+              "chunk": "chain",
+              "entity": "Chain Block",
+              "score": 0.785,
+              "matched": true
+            }
+          ],
+          "image": "Bicycle",
+          "fully_matched": true,
+          "missing_chunks": []
+        },
+        {
+          "step": "Adjust",
+          "entities": [],
+          "image": null,
+          "fully_matched": false,
+          "missing_chunks": []
+        },
+        {
+          "step": "Open and remove the quick release lever, if your bike has one.",
+          "entities": [
+            {
+              "chunk": "quick release lever",
+              "entity": "Tap Wrench",
+              "score": 0.569,
+              "matched": true
+            },
+            {
+              "chunk": "lever",
+              "entity": "Hydraulic Press",
+              "score": 0.624,
+              "matched": true
+            },
+            {
+              "chunk": "bike",
+              "entity": "Bicycle",
+              "score": 0.92,
+              "matched": true
+            }
+          ],
+          "image": "Tap Wrench",
+          "fully_matched": true,
+          "missing_chunks": []
+        },
+        {
+          "step": "Use a wrench to loosen the nuts if you don’t have a quick release lever.",
+          "entities": [
+            {
+              "chunk": "wrench",
+              "entity": "Wrench",
+              "score": 1.0,
+              "matched": true
+            },
+            {
+              "chunk": "nuts",
+              "entity": "Cashew Nut",
+              "score": 0.657,
+              "matched": true
+            },
+            {
+              "chunk": "nut",
+              "entity": "Nutella",
+              "score": 0.664,
+              "matched": true
+            },
+            {
+              "chunk": "quick release lever",
+              "entity": "Tap Wrench",
+              "score": 0.569,
+              "matched": true
+            },
+            {
+              "chunk": "lever",
+              "entity": "Hydraulic Press",
+              "score": 0.624,
+              "matched": true
+            }
+          ],
+          "image": "Wrench",
+          "fully_matched": true,
+          "missing_chunks": []
+        },
+        {
+          "step": "Detach the brake cables if necessary.",
+          "entities": [
+            {
+              "chunk": "detach",
+              "entity": null,
+              "score": 0.0,
+              "matched": false
+            },
+            {
+              "chunk": "cable",
+              "entity": "Cable Car",
+              "score": 0.788,
+              "matched": true
+            }
+          ],
+          "image": "Cable Car",
+          "fully_matched": false,
+          "missing_chunks": [
+            "detach"
+          ]
+        },
+        {
+          "step": "Lift the wheel off the frame.",
+          "entities": [
+            {
+              "chunk": "wheel",
+              "entity": "Wheel",
+              "score": 1.0,
+              "matched": true
+            },
+            {
+              "chunk": "frame",
+              "entity": "Picture Frame",
+              "score": 0.873,
+              "matched": true
+            }
+          ],
+          "image": "Wheel",
+          "fully_matched": true,
+          "missing_chunks": []
+        },
+        {
+          "step": "Deflate the tire",
+          "entities": [
+            {
+              "chunk": "tire",
+              "entity": "Obstacle Tire",
+              "score": 0.746,
+              "matched": true
+            }
+          ],
+          "image": "Obstacle Tire",
+          "fully_matched": true,
+          "missing_chunks": []
+        },
+        {
+          "step": "Hook the rounded edge of a tire lever under the outer edge of your tire.",
+          "entities": [
+            {
+              "chunk": "rounded edge",
+              "entity": null,
+              "score": 0.0,
+              "matched": false
+            },
+            {
+              "chunk": "edge",
+              "entity": null,
+              "score": 0.0,
+              "matched": false
+            },
+            {
+              "chunk": "tire lever",
+              "entity": null,
+              "score": 0.0,
+              "matched": false
+            },
+            {
+              "chunk": "lever",
+              "entity": "Hydraulic Press",
+              "score": 0.624,
+              "matched": true
+            },
+            {
+              "chunk": "outer edge",
+              "entity": null,
+              "score": 0.0,
+              "matched": false
+            },
+            {
+              "chunk": "tire",
+              "entity": "Obstacle Tire",
+              "score": 0.746,
+              "matched": true
+            }
+          ],
+          "image": "Hydraulic Press",
+          "fully_matched": false,
+          "missing_chunks": [
+            "rounded edge",
+            "edge",
+            "tire lever",
+            "outer edge"
+          ]
+        },
+        {
+          "step": "Work a second tire lever clockwise around the circumference of the tire.",
+          "entities": [
+            {
+              "chunk": "second tire lever",
+              "entity": null,
+              "score": 0.0,
+              "matched": false
+            },
+            {
+              "chunk": "clockwise",
+              "entity": "Reverse",
+              "score": 0.596,
+              "matched": true
+            },
+            {
+              "chunk": "circumference",
+              "entity": "Circle",
+              "score": 0.588,
+              "matched": true
+            },
+            {
+              "chunk": "tire",
+              "entity": "Obstacle Tire",
+              "score": 0.746,
+              "matched": true
+            }
+          ],
+          "image": "Reverse",
+          "fully_matched": false,
+          "missing_chunks": [
+            "second tire lever"
+          ]
+        },
+        {
+          "step": "Pull the tube out from inside the tire.",
+          "entities": [
+            {
+              "chunk": "tube",
+              "entity": "Experiment Tube",
+              "score": 0.756,
+              "matched": true
+            },
+            {
+              "chunk": "tire",
+              "entity": "Obstacle Tire",
+              "score": 0.746,
+              "matched": true
+            }
+          ],
+          "image": "Experiment Tube",
+          "fully_matched": true,
+          "missing_chunks": []
+        },
+        {
+          "step": "Unwrap the tube and remove the dust cap, lock ring, and valve cover.",
+          "entities": [
+            {
+              "chunk": "tube",
+              "entity": "Experiment Tube",
+              "score": 0.756,
+              "matched": true
+            },
+            {
+              "chunk": "dust cap",
+              "entity": "Dust Cover",
+              "score": 0.747,
+              "matched": true
+            },
+            {
+              "chunk": "cap",
+              "entity": "Blue Cap",
+              "score": 0.775,
+              "matched": true
+            },
+            {
+              "chunk": "ring",
+              "entity": "Ring",
+              "score": 1.0,
+              "matched": true
+            },
+            {
+              "chunk": "cover",
+              "entity": "Album Cover",
+              "score": 0.722,
+              "matched": true
+            }
+          ],
+          "image": "Experiment Tube",
+          "fully_matched": true,
+          "missing_chunks": []
+        },
+        {
+          "step": "Inflate the bicycle tube slightly so it will hold its shape.",
+          "entities": [
+            {
+              "chunk": "tube",
+              "entity": "Experiment Tube",
+              "score": 0.756,
+              "matched": true
+            },
+            {
+              "chunk": "shape",
+              "entity": null,
+              "score": 0.0,
+              "matched": false
+            }
+          ],
+          "image": "Experiment Tube",
+          "fully_matched": false,
+          "missing_chunks": [
+            "shape"
+          ]
+        }
+      ]
+    }
+  ],
+  "failed_queries": []
+}

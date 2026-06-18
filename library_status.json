@@ -1,0 +1,2023 @@
+{
+  "Everyday Life": {
+    "Furniture": {
+      "present": [
+        "Chair",
+        "Table",
+        "Desk",
+        "Sofa",
+        "Armchair",
+        "Bookshelf",
+        "Wardrobe",
+        "Bed",
+        "Bunk Bed",
+        "Coffee Table",
+        "Dining Table",
+        "Stool",
+        "Bench",
+        "Rocking Chair",
+        "Shoe Rack",
+        "Coat Rack",
+        "Filing Cabinet"
+      ],
+      "missing": [
+        "Baby Crib",
+        "Dresser",
+        "Nightstand",
+        "Bar Stool",
+        "Ottoman",
+        "TV Stand"
+      ],
+      "total_reference": 23,
+      "coverage_pct": 73.9
+    },
+    "Lighting": {
+      "present": [
+        "Lamp",
+        "Floor Lamp",
+        "Desk Lamp",
+        "Candle",
+        "Flashlight",
+        "Lantern",
+        "Night Light"
+      ],
+      "missing": [
+        "Ceiling Light",
+        "Chandelier",
+        "LED Strip"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 70.0
+    },
+    "Decor & Textiles": {
+      "present": [
+        "Rug",
+        "Curtain",
+        "Pillow",
+        "Blanket",
+        "Vase",
+        "Picture Frame",
+        "Mirror",
+        "Wall Art",
+        "Tablecloth",
+        "Towel",
+        "Shower Curtain"
+      ],
+      "missing": [
+        "Blinds",
+        "Clock"
+      ],
+      "total_reference": 13,
+      "coverage_pct": 84.6
+    },
+    "Kitchen Appliances": {
+      "present": [
+        "Refrigerator",
+        "Microwave Oven",
+        "Toaster",
+        "Blender",
+        "Coffee Maker",
+        "Electric Kettle",
+        "Rice Cooker",
+        "Dishwasher",
+        "Oven",
+        "Air Fryer",
+        "Stand Mixer",
+        "Waffle Iron"
+      ],
+      "missing": [
+        "Stove",
+        "Slow Cooker",
+        "Food Processor",
+        "Juicer",
+        "Bread Machine",
+        "Induction Cooktop"
+      ],
+      "total_reference": 18,
+      "coverage_pct": 66.7
+    },
+    "Kitchen Utensils & Tableware": {
+      "present": [
+        "Plate",
+        "Mug",
+        "Wine Glass",
+        "Fork",
+        "Knife",
+        "Spoon",
+        "Chopsticks",
+        "Cutting Board",
+        "Wok",
+        "Spatula",
+        "Whisk",
+        "Can Opener",
+        "Rolling Pin",
+        "Measuring Cup"
+      ],
+      "missing": [
+        "Bowl",
+        "Cup",
+        "Glass",
+        "Pot",
+        "Pan",
+        "Colander",
+        "Ladle",
+        "Grater",
+        "Peeler",
+        "Mixing Bowl"
+      ],
+      "total_reference": 24,
+      "coverage_pct": 58.3
+    },
+    "Cleaning": {
+      "present": [
+        "Broom",
+        "Mop",
+        "Vacuum Cleaner",
+        "Dustpan",
+        "Bucket",
+        "Sponge",
+        "Trash Can",
+        "Recycling Bin",
+        "Laundry Basket",
+        "Iron",
+        "Washing Machine",
+        "Clothes Dryer",
+        "Spray Bottle"
+      ],
+      "missing": [
+        "Scrub Brush",
+        "Plunger",
+        "Ironing Board",
+        "Drying Rack",
+        "Detergent Bottle"
+      ],
+      "total_reference": 18,
+      "coverage_pct": 72.2
+    },
+    "Bathroom": {
+      "present": [
+        "Toilet",
+        "Sink",
+        "Toothbrush",
+        "Toothpaste",
+        "Soap",
+        "Shampoo",
+        "Hair Dryer",
+        "Razor",
+        "Toilet Paper"
+      ],
+      "missing": [
+        "Bathtub",
+        "Shower",
+        "Towel Rail",
+        "Scale",
+        "Medicine Cabinet"
+      ],
+      "total_reference": 14,
+      "coverage_pct": 64.3
+    },
+    "Personal Care & Health": {
+      "present": [
+        "Hairbrush",
+        "Hand Mirror",
+        "Tweezers",
+        "First Aid Kit",
+        "Thermometer",
+        "Syringe",
+        "Wheelchair",
+        "Crutches",
+        "Sunscreen"
+      ],
+      "missing": [
+        "Comb",
+        "Nail Clippers",
+        "Bandage",
+        "Medicine Bottle",
+        "Pill",
+        "Walking Cane"
+      ],
+      "total_reference": 15,
+      "coverage_pct": 60.0
+    },
+    "Office & Stationery": {
+      "present": [
+        "Pen",
+        "Pencil",
+        "Marker",
+        "Eraser",
+        "Ruler",
+        "Scissors",
+        "Stapler",
+        "Binder",
+        "Notebook",
+        "Sticky Note",
+        "Calendar",
+        "Envelope",
+        "Letter",
+        "Stamp",
+        "Folder",
+        "Briefcase",
+        "Desk Organizer",
+        "Whiteboard"
+      ],
+      "missing": [
+        "Highlighter",
+        "Paper Clip"
+      ],
+      "total_reference": 20,
+      "coverage_pct": 90.0
+    },
+    "Electronics & Technology": {
+      "present": [
+        "Laptop",
+        "Desktop Computer",
+        "Keyboard",
+        "Router",
+        "Hard Drive",
+        "Headphones",
+        "Earbuds",
+        "Webcam",
+        "Remote Control",
+        "Game Controller",
+        "Smartphone",
+        "Tablet",
+        "Smart Watch",
+        "Power Bank",
+        "Extension Cord"
+      ],
+      "missing": [
+        "Monitor",
+        "Mouse",
+        "Printer",
+        "Scanner",
+        "Modem",
+        "USB Drive",
+        "Microphone",
+        "TV",
+        "Charger"
+      ],
+      "total_reference": 24,
+      "coverage_pct": 62.5
+    },
+    "Security & Home": {
+      "present": [
+        "Key",
+        "Doorbell",
+        "Fire Extinguisher",
+        "Safe",
+        "Alarm Clock",
+        "Door",
+        "Window",
+        "Mailbox"
+      ],
+      "missing": [
+        "Lock",
+        "Security Camera",
+        "Smoke Detector"
+      ],
+      "total_reference": 11,
+      "coverage_pct": 72.7
+    },
+    "Tools & Hardware": {
+      "present": [
+        "Hammer",
+        "Screwdriver",
+        "Wrench",
+        "Pliers",
+        "Level",
+        "Paintbrush",
+        "Ladder",
+        "Toolbox"
+      ],
+      "missing": [
+        "Drill",
+        "Saw",
+        "Tape Measure",
+        "Paint Roller"
+      ],
+      "total_reference": 12,
+      "coverage_pct": 66.7
+    },
+    "Bags & Storage": {
+      "present": [
+        "Backpack",
+        "Handbag",
+        "Suitcase",
+        "Shopping Bag",
+        "Tote Bag",
+        "Wallet",
+        "Purse"
+      ],
+      "missing": [
+        "Duffel Bag",
+        "Cardboard Box",
+        "Storage Bin"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 70.0
+    },
+    "Baby & Children": {
+      "present": [
+        "Pacifier",
+        "Teddy Bear",
+        "Rattle"
+      ],
+      "missing": [
+        "Baby Stroller",
+        "Baby Carrier",
+        "Baby Bottle",
+        "Diaper",
+        "Baby Monitor",
+        "High Chair",
+        "Toy Block"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 30.0
+    },
+    "Finance & Documents": {
+      "present": [
+        "Credit Card",
+        "Coin",
+        "Piggy Bank",
+        "Receipt",
+        "Invoice",
+        "Contract",
+        "ID Card",
+        "Passport"
+      ],
+      "missing": [
+        "Banknote"
+      ],
+      "total_reference": 9,
+      "coverage_pct": 88.9
+    }
+  },
+  "Animals": {
+    "Mammals – Domestic": {
+      "present": [
+        "Dog",
+        "Cat",
+        "Rabbit",
+        "Hamster",
+        "Guinea Pig",
+        "Parrot",
+        "Goldfish",
+        "Snake",
+        "Horse",
+        "Donkey",
+        "Cow",
+        "Pig",
+        "Sheep",
+        "Goat",
+        "Goose",
+        "Turkey"
+      ],
+      "missing": [
+        "Gerbil",
+        "Turtle",
+        "Chicken",
+        "Duck"
+      ],
+      "total_reference": 20,
+      "coverage_pct": 80.0
+    },
+    "Mammals – Wild Africa": {
+      "present": [
+        "African Elephant",
+        "Lion",
+        "Leopard",
+        "Cheetah",
+        "Giraffe",
+        "Zebra",
+        "Hippo",
+        "Rhinoceros",
+        "Gorilla",
+        "Mandrill",
+        "Hyena",
+        "Meerkat",
+        "Warthog",
+        "Aardvark",
+        "Ostrich"
+      ],
+      "missing": [
+        "Chimpanzee",
+        "Baboon",
+        "Wildebeest",
+        "Cape Buffalo"
+      ],
+      "total_reference": 19,
+      "coverage_pct": 78.9
+    },
+    "Mammals – Wild Asia": {
+      "present": [
+        "Tiger",
+        "Snow Leopard",
+        "Giant Panda",
+        "Red Panda",
+        "Orangutan",
+        "Proboscis Monkey",
+        "Komodo Dragon",
+        "Clouded Leopard",
+        "Sun Bear",
+        "Tapir",
+        "Gharial"
+      ],
+      "missing": [
+        "Asian Elephant",
+        "Indian Rhino"
+      ],
+      "total_reference": 13,
+      "coverage_pct": 84.6
+    },
+    "Mammals – Wild Americas": {
+      "present": [
+        "Grizzly Bear",
+        "Polar Bear",
+        "Wolf",
+        "Coyote",
+        "Moose",
+        "Bison",
+        "Jaguar",
+        "Ocelot",
+        "Capybara",
+        "Giant Anteater",
+        "Sloth",
+        "Armadillo",
+        "Raccoon",
+        "Skunk",
+        "Beaver",
+        "Otter"
+      ],
+      "missing": [
+        "Black Bear",
+        "Fox",
+        "Elk",
+        "White-tailed Deer",
+        "Puma"
+      ],
+      "total_reference": 21,
+      "coverage_pct": 76.2
+    },
+    "Mammals – Wild Europe & Other": {
+      "present": [
+        "Lynx",
+        "Wild Boar",
+        "Badger",
+        "Hedgehog",
+        "Mole",
+        "Koala",
+        "Wombat",
+        "Platypus",
+        "Tasmanian Devil"
+      ],
+      "missing": [
+        "Brown Bear",
+        "Red Deer",
+        "Red Squirrel",
+        "Kangaroo"
+      ],
+      "total_reference": 13,
+      "coverage_pct": 69.2
+    },
+    "Birds": {
+      "present": [
+        "Bald Eagle",
+        "Owl",
+        "Flamingo",
+        "Peacock",
+        "Parrot",
+        "Toucan",
+        "Woodpecker",
+        "Hummingbird",
+        "Robin",
+        "Swan",
+        "Pelican",
+        "Stork",
+        "Crane",
+        "Puffin",
+        "Cassowary",
+        "Emu"
+      ],
+      "missing": [
+        "Penguin",
+        "Pigeon",
+        "Crow",
+        "Albatross",
+        "Kookaburra",
+        "Roadrunner"
+      ],
+      "total_reference": 22,
+      "coverage_pct": 72.7
+    },
+    "Reptiles & Amphibians": {
+      "present": [
+        "Crocodile",
+        "Komodo Dragon",
+        "Chameleon",
+        "Gecko",
+        "Iguana",
+        "Tortoise",
+        "Boa Constrictor",
+        "Axolotl"
+      ],
+      "missing": [
+        "Alligator",
+        "Monitor Lizard",
+        "Sea Turtle",
+        "King Cobra",
+        "Python",
+        "Rattlesnake",
+        "Green Tree Frog",
+        "Salamander"
+      ],
+      "total_reference": 16,
+      "coverage_pct": 50.0
+    },
+    "Sea Life": {
+      "present": [
+        "Blue Whale",
+        "Orca",
+        "Dolphin",
+        "Great White Shark",
+        "Hammerhead Shark",
+        "Manta Ray",
+        "Octopus",
+        "Squid",
+        "Jellyfish",
+        "Anglerfish",
+        "Starfish",
+        "Sea Urchin",
+        "Crab",
+        "Lobster",
+        "Shrimp",
+        "Seal",
+        "Walrus",
+        "Narwhal"
+      ],
+      "missing": [
+        "Seahorse",
+        "Clownfish",
+        "Sea Lion"
+      ],
+      "total_reference": 21,
+      "coverage_pct": 85.7
+    },
+    "Insects & Invertebrates": {
+      "present": [
+        "Butterfly",
+        "Moth",
+        "Bumblebee",
+        "Wasp",
+        "Ant",
+        "Beetle",
+        "Ladybug",
+        "Firefly",
+        "Grasshopper",
+        "Dragonfly",
+        "Mosquito",
+        "Scorpion",
+        "Centipede",
+        "Snail"
+      ],
+      "missing": [
+        "Bee",
+        "Termite",
+        "Cricket",
+        "Spider",
+        "Worm"
+      ],
+      "total_reference": 19,
+      "coverage_pct": 73.7
+    },
+    "Extinct & Mythical": {
+      "present": [
+        "Tyrannosaurus Rex",
+        "Triceratops",
+        "Stegosaurus",
+        "Velociraptor"
+      ],
+      "missing": [
+        "Brachiosaurus",
+        "Mammoth",
+        "Saber-Toothed Tiger",
+        "Dodo"
+      ],
+      "total_reference": 8,
+      "coverage_pct": 50.0
+    }
+  },
+  "Nature & Outdoors": {
+    "Trees": {
+      "present": [
+        "Oak Tree",
+        "Pine Tree",
+        "Birch Tree",
+        "Baobab Tree",
+        "Willow Tree",
+        "Cactus",
+        "Bamboo"
+      ],
+      "missing": [
+        "Palm Tree",
+        "Cherry Blossom Tree",
+        "Maple Tree"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 70.0
+    },
+    "Flowers": {
+      "present": [
+        "Rose",
+        "Sunflower",
+        "Tulip",
+        "Lily",
+        "Orchid",
+        "Lavender",
+        "Dandelion",
+        "Daffodil"
+      ],
+      "missing": [
+        "Daisy",
+        "Poppy",
+        "Hibiscus",
+        "Lotus"
+      ],
+      "total_reference": 12,
+      "coverage_pct": 66.7
+    },
+    "Plants & Vegetation": {
+      "present": [
+        "Fern",
+        "Moss",
+        "Vine",
+        "Grass",
+        "Wheat",
+        "Sunflower",
+        "Clover"
+      ],
+      "missing": [
+        "Mushroom",
+        "Seaweed",
+        "Corn",
+        "Potted Plant",
+        "Bonsai Tree"
+      ],
+      "total_reference": 12,
+      "coverage_pct": 58.3
+    },
+    "Landscapes & Weather": {
+      "present": [
+        "Mountain",
+        "Volcano",
+        "Beach",
+        "Ocean",
+        "River",
+        "Waterfall",
+        "Jungle",
+        "Rainbow",
+        "Lightning",
+        "Cloud",
+        "Sunrise",
+        "Sunset"
+      ],
+      "missing": [
+        "Desert",
+        "Lake",
+        "Forest",
+        "Snow",
+        "Fog",
+        "Full Moon"
+      ],
+      "total_reference": 18,
+      "coverage_pct": 66.7
+    },
+    "Geological": {
+      "present": [
+        "Rock",
+        "Cave",
+        "Cliff",
+        "Iceberg",
+        "Glacier",
+        "Geyser",
+        "Sand Dune"
+      ],
+      "missing": [],
+      "total_reference": 7,
+      "coverage_pct": 100.0
+    }
+  },
+  "Food & Drink": {
+    "Fruits": {
+      "present": [
+        "Apple",
+        "Banana",
+        "Orange",
+        "Strawberry",
+        "Grape",
+        "Watermelon",
+        "Pineapple",
+        "Mango",
+        "Peach",
+        "Pear",
+        "Lemon",
+        "Blueberry",
+        "Raspberry",
+        "Coconut",
+        "Pomegranate",
+        "Fig",
+        "Avocado",
+        "Papaya"
+      ],
+      "missing": [
+        "Cherry",
+        "Kiwi"
+      ],
+      "total_reference": 20,
+      "coverage_pct": 90.0
+    },
+    "Vegetables": {
+      "present": [
+        "Carrot",
+        "Broccoli",
+        "Potato",
+        "Tomato",
+        "Onion",
+        "Garlic",
+        "Lettuce",
+        "Spinach",
+        "Cucumber",
+        "Pumpkin",
+        "Eggplant",
+        "Zucchini",
+        "Cauliflower",
+        "Sweet Potato"
+      ],
+      "missing": [
+        "Pepper",
+        "Corn",
+        "Peas",
+        "Asparagus",
+        "Mushroom",
+        "Beetroot"
+      ],
+      "total_reference": 20,
+      "coverage_pct": 70.0
+    },
+    "Bread & Baked Goods": {
+      "present": [
+        "Bread",
+        "Sourdough Bread",
+        "Baguette",
+        "Bagel",
+        "Croissant",
+        "Donut",
+        "Pancake",
+        "Cake",
+        "Cupcake",
+        "Pizza"
+      ],
+      "missing": [
+        "Muffin",
+        "Waffle",
+        "Cookie",
+        "Pie",
+        "Tart",
+        "Pretzel"
+      ],
+      "total_reference": 16,
+      "coverage_pct": 62.5
+    },
+    "Meat & Protein": {
+      "present": [
+        "Burger",
+        "Hot Dog",
+        "Bacon",
+        "Sausage",
+        "Ham",
+        "Salmon",
+        "Shrimp",
+        "Egg",
+        "Tofu",
+        "Cheese"
+      ],
+      "missing": [
+        "Chicken",
+        "Steak"
+      ],
+      "total_reference": 12,
+      "coverage_pct": 83.3
+    },
+    "International Dishes": {
+      "present": [
+        "Sushi",
+        "Ramen",
+        "Pasta",
+        "Burrito",
+        "Curry",
+        "Dumplings",
+        "Kebab",
+        "Paella",
+        "Falafel",
+        "Hummus"
+      ],
+      "missing": [
+        "Tacos",
+        "Fried Rice",
+        "Spring Roll"
+      ],
+      "total_reference": 13,
+      "coverage_pct": 76.9
+    },
+    "Desserts & Snacks": {
+      "present": [
+        "Ice Cream",
+        "Chocolate",
+        "Candy",
+        "Popcorn",
+        "Chips",
+        "Nachos",
+        "Gelato",
+        "Lollipop"
+      ],
+      "missing": [
+        "Granola Bar",
+        "Marshmallow"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 80.0
+    },
+    "Beverages": {
+      "present": [
+        "Coffee",
+        "Tea",
+        "Milk",
+        "Water",
+        "Cocktail",
+        "Hot Chocolate",
+        "Lemonade",
+        "Energy Drink"
+      ],
+      "missing": [
+        "Juice",
+        "Soda",
+        "Beer",
+        "Wine",
+        "Smoothie"
+      ],
+      "total_reference": 13,
+      "coverage_pct": 61.5
+    }
+  },
+  "Flags": {
+    "World / International": {
+      "present": [
+        "European Union Flag",
+        "White Flag"
+      ],
+      "missing": [
+        "United Nations Flag",
+        "Olympic Flag",
+        "Red Cross Flag",
+        "Pirate Flag"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 33.3
+    },
+    "Signal & Sport": {
+      "present": [
+        "Referee Flag"
+      ],
+      "missing": [
+        "Checkered Flag",
+        "Racing Flag",
+        "Red Flag",
+        "Yellow Flag",
+        "Finish Flag"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 16.7
+    },
+    "Pride & Social": {
+      "present": [
+        "Pride Flag"
+      ],
+      "missing": [
+        "Transgender Flag",
+        "Bisexual Flag",
+        "Non-binary Flag"
+      ],
+      "total_reference": 4,
+      "coverage_pct": 25.0
+    }
+  },
+  "Countries": {
+    "Europe": {
+      "present": [
+        "France",
+        "Germany",
+        "United Kingdom",
+        "Italy",
+        "Spain",
+        "Netherlands",
+        "Belgium",
+        "Switzerland",
+        "Sweden",
+        "Norway",
+        "Denmark",
+        "Finland",
+        "Poland",
+        "Portugal",
+        "Greece",
+        "Austria"
+      ],
+      "missing": [
+        "Czech Republic"
+      ],
+      "total_reference": 17,
+      "coverage_pct": 94.1
+    },
+    "Americas": {
+      "present": [
+        "Canada",
+        "Mexico",
+        "Brazil",
+        "Argentina",
+        "Colombia",
+        "Chile",
+        "Peru",
+        "Jamaica"
+      ],
+      "missing": [
+        "United States",
+        "Cuba"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 80.0
+    },
+    "Asia": {
+      "present": [
+        "China",
+        "Japan",
+        "South Korea",
+        "India",
+        "Indonesia",
+        "Thailand",
+        "Vietnam",
+        "Philippines",
+        "Malaysia",
+        "Singapore",
+        "Pakistan",
+        "Bangladesh"
+      ],
+      "missing": [],
+      "total_reference": 12,
+      "coverage_pct": 100.0
+    },
+    "Middle East & Africa": {
+      "present": [
+        "Turkey",
+        "Saudi Arabia",
+        "Iran",
+        "Egypt",
+        "Nigeria",
+        "South Africa",
+        "Kenya",
+        "Ethiopia",
+        "Israel"
+      ],
+      "missing": [
+        "UAE"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 90.0
+    },
+    "Oceania": {
+      "present": [
+        "Australia",
+        "New Zealand",
+        "Fiji"
+      ],
+      "missing": [
+        "Papua New Guinea"
+      ],
+      "total_reference": 4,
+      "coverage_pct": 75.0
+    }
+  },
+  "Vehicles & Transport": {
+    "Land Vehicles": {
+      "present": [
+        "Car",
+        "Bicycle",
+        "Motorcycle",
+        "Bus",
+        "Truck",
+        "Van",
+        "Ambulance",
+        "Fire Truck",
+        "Police Car",
+        "Taxi",
+        "Tram",
+        "Train",
+        "Scooter",
+        "Electric Car",
+        "Tractor",
+        "Forklift",
+        "Tank",
+        "Cement Mixer"
+      ],
+      "missing": [
+        "Subway"
+      ],
+      "total_reference": 19,
+      "coverage_pct": 94.7
+    },
+    "Air Vehicles": {
+      "present": [
+        "Airplane",
+        "Helicopter",
+        "Hot Air Balloon",
+        "Drone",
+        "Space Shuttle",
+        "Rocket"
+      ],
+      "missing": [
+        "Fighter Jet",
+        "Parachute"
+      ],
+      "total_reference": 8,
+      "coverage_pct": 75.0
+    },
+    "Water Vehicles": {
+      "present": [
+        "Sailboat",
+        "Yacht",
+        "Kayak",
+        "Canoe",
+        "Ferry",
+        "Cruise Ship",
+        "Cargo Ship",
+        "Submarine",
+        "Rowing Boat"
+      ],
+      "missing": [
+        "Motor Boat"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 90.0
+    }
+  },
+  "Sports": {
+    "Ball Sports": {
+      "present": [
+        "Football",
+        "Basketball",
+        "Baseball",
+        "Rugby",
+        "Volleyball",
+        "Golf",
+        "Badminton"
+      ],
+      "missing": [
+        "Tennis",
+        "Cricket",
+        "Table Tennis"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 70.0
+    },
+    "Winter Sports": {
+      "present": [
+        "Skiing",
+        "Ice Skating",
+        "Snowboarding",
+        "Bobsled"
+      ],
+      "missing": [
+        "Ice Hockey",
+        "Curling"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 66.7
+    },
+    "Water Sports": {
+      "present": [
+        "Swimming",
+        "Surfing",
+        "Water Polo"
+      ],
+      "missing": [
+        "Diving",
+        "Rowing",
+        "Sailing"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 50.0
+    },
+    "Athletics & Combat": {
+      "present": [
+        "Running",
+        "Weightlifting",
+        "Boxing",
+        "Martial Arts",
+        "Archery",
+        "Fencing"
+      ],
+      "missing": [
+        "Cycling",
+        "Wrestling",
+        "Gymnastics"
+      ],
+      "total_reference": 9,
+      "coverage_pct": 66.7
+    },
+    "Equipment": {
+      "present": [
+        "Football",
+        "Basketball",
+        "Tennis Racket",
+        "Baseball Bat",
+        "Cricket Bat",
+        "Hockey Stick",
+        "Golf Club",
+        "Skateboard",
+        "Surfboard",
+        "Boxing Gloves",
+        "Goggles"
+      ],
+      "missing": [
+        "Helmet",
+        "Shin Guards"
+      ],
+      "total_reference": 13,
+      "coverage_pct": 84.6
+    }
+  },
+  "Health & Wellness": {
+    "Medical Equipment": {
+      "present": [
+        "Stethoscope",
+        "Blood Pressure Monitor",
+        "Thermometer",
+        "Syringe",
+        "X-Ray",
+        "MRI Machine",
+        "Wheelchair",
+        "Crutches",
+        "Hearing Aid"
+      ],
+      "missing": [
+        "IV Drip",
+        "ECG Machine",
+        "Prosthetic Limb"
+      ],
+      "total_reference": 12,
+      "coverage_pct": 75.0
+    },
+    "Fitness": {
+      "present": [
+        "Dumbbell",
+        "Barbell",
+        "Yoga Mat",
+        "Jump Rope",
+        "Resistance Band",
+        "Treadmill",
+        "Pull-up Bar",
+        "Kettlebell",
+        "Foam Roller"
+      ],
+      "missing": [
+        "Exercise Bike"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 90.0
+    },
+    "Wellness & Self-care": {
+      "present": [
+        "Meditation",
+        "Massage",
+        "Spa",
+        "Essential Oil"
+      ],
+      "missing": [
+        "Acupuncture",
+        "Diffuser"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 66.7
+    }
+  },
+  "Technology & Media": {
+    "Computing": {
+      "present": [
+        "Laptop",
+        "Desktop Computer",
+        "Server",
+        "Database",
+        "Microchip"
+      ],
+      "missing": [
+        "Cloud Storage",
+        "Circuit Board",
+        "USB Hub"
+      ],
+      "total_reference": 8,
+      "coverage_pct": 62.5
+    },
+    "Communication": {
+      "present": [
+        "Mobile Phone",
+        "Email",
+        "Chat Bubble",
+        "Satellite",
+        "Radio",
+        "Walkie Talkie"
+      ],
+      "missing": [
+        "Telephone",
+        "Video Call"
+      ],
+      "total_reference": 8,
+      "coverage_pct": 75.0
+    },
+    "Media & Entertainment": {
+      "present": [
+        "Camera",
+        "Video Camera",
+        "Film Reel",
+        "Radio",
+        "Podcast",
+        "Vinyl Record",
+        "Cassette Tape",
+        "DVD",
+        "VR Headset"
+      ],
+      "missing": [
+        "TV",
+        "CD",
+        "Game Console"
+      ],
+      "total_reference": 12,
+      "coverage_pct": 75.0
+    },
+    "Symbols & UI": {
+      "present": [
+        "Battery",
+        "Magnifying Glass",
+        "Lock Icon",
+        "Globe"
+      ],
+      "missing": [
+        "Wi-Fi",
+        "Bluetooth",
+        "Power Button",
+        "Settings Gear",
+        "Home Button"
+      ],
+      "total_reference": 9,
+      "coverage_pct": 44.4
+    }
+  },
+  "Fashion & Style": {
+    "Tops & Outerwear": {
+      "present": [
+        "T-Shirt",
+        "Coat",
+        "Suit",
+        "Hoodie",
+        "Sweater",
+        "Dress",
+        "Blouse"
+      ],
+      "missing": [
+        "Shirt",
+        "Jacket",
+        "Blazer"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 70.0
+    },
+    "Bottoms": {
+      "present": [
+        "Jeans",
+        "Shorts",
+        "Skirt",
+        "Leggings"
+      ],
+      "missing": [
+        "Trousers"
+      ],
+      "total_reference": 5,
+      "coverage_pct": 80.0
+    },
+    "Footwear": {
+      "present": [
+        "Sneakers",
+        "Sandals",
+        "Loafers",
+        "Socks"
+      ],
+      "missing": [
+        "Boots",
+        "Heels",
+        "Flip Flops"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 57.1
+    },
+    "Accessories": {
+      "present": [
+        "Scarf",
+        "Belt",
+        "Tie",
+        "Sunglasses",
+        "Watch",
+        "Necklace",
+        "Ring",
+        "Bracelet"
+      ],
+      "missing": [
+        "Hat",
+        "Cap",
+        "Gloves",
+        "Earrings"
+      ],
+      "total_reference": 12,
+      "coverage_pct": 66.7
+    },
+    "Cultural & Formal": {
+      "present": [
+        "Kimono",
+        "Kilt",
+        "Tuxedo",
+        "Wedding Dress"
+      ],
+      "missing": [
+        "Saree",
+        "Turban",
+        "Traditional Dress"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 57.1
+    }
+  },
+  "Places & Structures": {
+    "Residential": {
+      "present": [
+        "House",
+        "Apartment Building",
+        "Cottage",
+        "Villa",
+        "Skyscraper",
+        "Hut",
+        "Tent",
+        "Igloo"
+      ],
+      "missing": [
+        "Houseboat"
+      ],
+      "total_reference": 9,
+      "coverage_pct": 88.9
+    },
+    "Public Buildings": {
+      "present": [
+        "Hospital",
+        "School",
+        "University",
+        "Library",
+        "Post Office",
+        "Bank",
+        "Hotel",
+        "Fire Station"
+      ],
+      "missing": [
+        "Police Station"
+      ],
+      "total_reference": 9,
+      "coverage_pct": 88.9
+    },
+    "Commercial": {
+      "present": [
+        "Restaurant",
+        "Cafe",
+        "Supermarket",
+        "Shopping Mall",
+        "Gas Station",
+        "Pharmacy"
+      ],
+      "missing": [
+        "Barbershop"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 85.7
+    },
+    "Religious & Cultural": {
+      "present": [
+        "Church",
+        "Mosque",
+        "Synagogue",
+        "Temple",
+        "Cathedral",
+        "Pagoda",
+        "Museum",
+        "Theater"
+      ],
+      "missing": [
+        "Cinema"
+      ],
+      "total_reference": 9,
+      "coverage_pct": 88.9
+    },
+    "Infrastructure": {
+      "present": [
+        "Bridge",
+        "Dam",
+        "Lighthouse",
+        "Windmill",
+        "Water Tower",
+        "Eiffel Tower",
+        "Statue of Liberty",
+        "Colosseum",
+        "Taj Mahal"
+      ],
+      "missing": [
+        "Great Wall"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 90.0
+    },
+    "Outdoor & Recreational": {
+      "present": [
+        "Park",
+        "Playground",
+        "Stadium",
+        "Zoo",
+        "Aquarium",
+        "Cemetery",
+        "Farm"
+      ],
+      "missing": [],
+      "total_reference": 7,
+      "coverage_pct": 100.0
+    }
+  },
+  "Space & Science": {
+    "Space Objects": {
+      "present": [
+        "Sun",
+        "Moon",
+        "Earth",
+        "Mars",
+        "Jupiter",
+        "Neptune",
+        "Uranus",
+        "Venus",
+        "Mercury",
+        "Pluto",
+        "Comet",
+        "Black Hole",
+        "Nebula"
+      ],
+      "missing": [
+        "Saturn",
+        "Meteor",
+        "Galaxy"
+      ],
+      "total_reference": 16,
+      "coverage_pct": 81.2
+    },
+    "Space Equipment": {
+      "present": [
+        "Telescope",
+        "Space Shuttle",
+        "Rocket",
+        "Satellite",
+        "Astronaut",
+        "Space Suit"
+      ],
+      "missing": [
+        "Space Station",
+        "Rover",
+        "Space Capsule"
+      ],
+      "total_reference": 9,
+      "coverage_pct": 66.7
+    },
+    "Science": {
+      "present": [
+        "Microscope",
+        "Beaker",
+        "Atom",
+        "Magnet",
+        "Compass",
+        "Thermometer"
+      ],
+      "missing": [
+        "Test Tube",
+        "Bunsen Burner",
+        "DNA",
+        "Periodic Table",
+        "Scale"
+      ],
+      "total_reference": 11,
+      "coverage_pct": 54.5
+    }
+  },
+  "History & Culture": {
+    "Historical Items": {
+      "present": [
+        "Viking Helmet",
+        "Pyramid",
+        "Totem Pole"
+      ],
+      "missing": [
+        "Ancient Scroll",
+        "Papyrus",
+        "Medieval Sword",
+        "Knight Armor",
+        "Sphinx",
+        "Roman Colosseum",
+        "Aboriginal Art"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 30.0
+    },
+    "Cultural Symbols": {
+      "present": [
+        "Cross"
+      ],
+      "missing": [
+        "Yin Yang",
+        "Hamsa",
+        "Lotus",
+        "Om Symbol",
+        "Star of David",
+        "Crescent Moon"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 14.3
+    },
+    "Art & Music": {
+      "present": [
+        "Guitar",
+        "Piano",
+        "Violin",
+        "Trumpet",
+        "Saxophone",
+        "Flute"
+      ],
+      "missing": [
+        "Painting",
+        "Sculpture",
+        "Drum",
+        "Harp"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 60.0
+    }
+  },
+  "Work & Industry": {
+    "Construction": {
+      "present": [
+        "Crane",
+        "Excavator",
+        "Bulldozer",
+        "Concrete Mixer",
+        "Hard Hat",
+        "Safety Vest",
+        "Blueprint",
+        "Brick"
+      ],
+      "missing": [],
+      "total_reference": 8,
+      "coverage_pct": 100.0
+    },
+    "Agriculture": {
+      "present": [
+        "Tractor",
+        "Greenhouse",
+        "Rake",
+        "Shovel"
+      ],
+      "missing": [
+        "Combine Harvester",
+        "Plow",
+        "Irrigation",
+        "Seeds"
+      ],
+      "total_reference": 8,
+      "coverage_pct": 50.0
+    },
+    "Manufacturing": {
+      "present": [
+        "Assembly Line",
+        "Robot Arm",
+        "Conveyor Belt",
+        "Gear",
+        "Wrench",
+        "Drill Press",
+        "Lathe"
+      ],
+      "missing": [],
+      "total_reference": 7,
+      "coverage_pct": 100.0
+    },
+    "Energy": {
+      "present": [
+        "Solar Panel",
+        "Wind Turbine",
+        "Oil Rig",
+        "Battery"
+      ],
+      "missing": [
+        "Nuclear Plant",
+        "Power Lines"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 66.7
+    }
+  },
+  "Professions": {
+    "Healthcare": {
+      "present": [
+        "Doctor",
+        "Nurse",
+        "Surgeon",
+        "Pharmacist",
+        "Dentist",
+        "Paramedic"
+      ],
+      "missing": [],
+      "total_reference": 6,
+      "coverage_pct": 100.0
+    },
+    "Education": {
+      "present": [
+        "Teacher",
+        "Librarian"
+      ],
+      "missing": [
+        "Professor"
+      ],
+      "total_reference": 3,
+      "coverage_pct": 66.7
+    },
+    "Emergency Services": {
+      "present": [
+        "Police Officer",
+        "Firefighter",
+        "Soldier",
+        "Lifeguard"
+      ],
+      "missing": [],
+      "total_reference": 4,
+      "coverage_pct": 100.0
+    },
+    "Trades & Technical": {
+      "present": [
+        "Electrician",
+        "Plumber",
+        "Carpenter",
+        "Mechanic",
+        "Architect",
+        "Engineer"
+      ],
+      "missing": [],
+      "total_reference": 6,
+      "coverage_pct": 100.0
+    },
+    "Creative & Service": {
+      "present": [
+        "Chef",
+        "Barista",
+        "Farmer",
+        "Artist",
+        "Musician",
+        "Photographer",
+        "Journalist",
+        "Pilot",
+        "Astronaut"
+      ],
+      "missing": [],
+      "total_reference": 9,
+      "coverage_pct": 100.0
+    }
+  },
+  "Entertainment & Leisure": {
+    "Music": {
+      "present": [
+        "Guitar",
+        "Piano",
+        "Drum Kit",
+        "Violin",
+        "Speaker"
+      ],
+      "missing": [
+        "Microphone",
+        "DJ Turntable"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 71.4
+    },
+    "Games": {
+      "present": [
+        "Playing Cards",
+        "Dice"
+      ],
+      "missing": [
+        "Chess",
+        "Board Game",
+        "Video Game",
+        "Puzzle",
+        "Dart Board"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 28.6
+    },
+    "Hobbies": {
+      "present": [],
+      "missing": [
+        "Painting",
+        "Drawing",
+        "Knitting",
+        "Gardening",
+        "Cooking",
+        "Photography",
+        "Reading"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 0.0
+    },
+    "Media": {
+      "present": [
+        "Book",
+        "Newspaper",
+        "Comic Book",
+        "Podcast"
+      ],
+      "missing": [
+        "Magazine",
+        "Streaming"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 66.7
+    }
+  },
+  "Hobbies": {
+    "Outdoor": {
+      "present": [
+        "Rock Climbing"
+      ],
+      "missing": [
+        "Hiking",
+        "Camping",
+        "Fishing",
+        "Hunting",
+        "Birdwatching",
+        "Cycling"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 14.3
+    },
+    "Indoor Creative": {
+      "present": [
+        "Origami"
+      ],
+      "missing": [
+        "Painting",
+        "Drawing",
+        "Sculpting",
+        "Knitting",
+        "Crocheting",
+        "Sewing"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 14.3
+    },
+    "Collecting": {
+      "present": [
+        "Stamp Collecting"
+      ],
+      "missing": [
+        "Coin Collecting",
+        "Toy Collection"
+      ],
+      "total_reference": 3,
+      "coverage_pct": 33.3
+    },
+    "Technology": {
+      "present": [],
+      "missing": [
+        "Programming",
+        "3D Printing",
+        "Robotics",
+        "Electronics"
+      ],
+      "total_reference": 4,
+      "coverage_pct": 0.0
+    }
+  },
+  "Events": {
+    "Celebrations": {
+      "present": [
+        "Wedding",
+        "Graduation",
+        "Baby Shower"
+      ],
+      "missing": [
+        "Birthday Party",
+        "Anniversary"
+      ],
+      "total_reference": 5,
+      "coverage_pct": 60.0
+    },
+    "Holidays": {
+      "present": [
+        "Christmas",
+        "Diwali",
+        "Hanukkah",
+        "Lunar New Year"
+      ],
+      "missing": [
+        "Halloween",
+        "Easter",
+        "Eid",
+        "Thanksgiving"
+      ],
+      "total_reference": 8,
+      "coverage_pct": 50.0
+    },
+    "Public Events": {
+      "present": [
+        "Concert",
+        "Festival",
+        "Parade",
+        "Election"
+      ],
+      "missing": [
+        "Protest",
+        "Olympics",
+        "World Cup"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 57.1
+    }
+  },
+  "Interface & Symbols": {
+    "Navigation": {
+      "present": [
+        "Home",
+        "Filter"
+      ],
+      "missing": [
+        "Arrow",
+        "Cursor",
+        "Menu",
+        "Back",
+        "Forward",
+        "Search"
+      ],
+      "total_reference": 8,
+      "coverage_pct": 25.0
+    },
+    "Status & Feedback": {
+      "present": [
+        "Check Mark",
+        "Cross",
+        "Error"
+      ],
+      "missing": [
+        "Warning",
+        "Info",
+        "Loading Spinner",
+        "Progress Bar"
+      ],
+      "total_reference": 7,
+      "coverage_pct": 42.9
+    },
+    "Common Icons": {
+      "present": [
+        "Star",
+        "Heart",
+        "Bookmark",
+        "Globe",
+        "Pin",
+        "Bell",
+        "Mail",
+        "Calendar"
+      ],
+      "missing": [
+        "Share",
+        "Download",
+        "Upload",
+        "Edit",
+        "Delete",
+        "Add",
+        "Close",
+        "Phone",
+        "Clock",
+        "User",
+        "Group"
+      ],
+      "total_reference": 19,
+      "coverage_pct": 42.1
+    }
+  },
+  "Fantasy & Imagination": {
+    "Creatures": {
+      "present": [
+        "Dragon",
+        "Unicorn",
+        "Phoenix",
+        "Griffin",
+        "Mermaid",
+        "Centaur",
+        "Minotaur",
+        "Werewolf",
+        "Vampire",
+        "Zombie"
+      ],
+      "missing": [
+        "Kraken"
+      ],
+      "total_reference": 11,
+      "coverage_pct": 90.9
+    },
+    "Magic": {
+      "present": [
+        "Magic Wand",
+        "Crystal Ball",
+        "Potion",
+        "Spell Book",
+        "Cauldron"
+      ],
+      "missing": [
+        "Magic Hat"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 83.3
+    },
+    "Characters": {
+      "present": [
+        "Wizard",
+        "Princess",
+        "Fairy",
+        "Elf",
+        "Goblin",
+        "Troll"
+      ],
+      "missing": [
+        "Witch",
+        "Knight",
+        "Prince",
+        "Dwarf"
+      ],
+      "total_reference": 10,
+      "coverage_pct": 60.0
+    }
+  },
+  "Historical Figures": {
+    "Ancient": {
+      "present": [
+        "Julius Caesar",
+        "Alexander the Great",
+        "Socrates"
+      ],
+      "missing": [
+        "Cleopatra",
+        "Aristotle",
+        "Plato"
+      ],
+      "total_reference": 6,
+      "coverage_pct": 50.0
+    },
+    "Medieval & Renaissance": {
+      "present": [
+        "Leonardo da Vinci",
+        "Joan of Arc",
+        "Marco Polo"
+      ],
+      "missing": [
+        "Michelangelo",
+        "Shakespeare"
+      ],
+      "total_reference": 5,
+      "coverage_pct": 60.0
+    },
+    "Modern": {
+      "present": [
+        "Napoleon Bonaparte",
+        "Abraham Lincoln",
+        "Albert Einstein",
+        "Marie Curie",
+        "Mahatma Gandhi",
+        "Martin Luther King Jr.",
+        "Nelson Mandela",
+        "Winston Churchill"
+      ],
+      "missing": [],
+      "total_reference": 8,
+      "coverage_pct": 100.0
+    }
+  }
+}

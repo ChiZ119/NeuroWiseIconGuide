@@ -1,0 +1,13 @@
+gunicorn==26.0.0
+packaging==26.2
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+flask
+openai
+sentence-transformers
+spacy
+aiohttp
+beautifulsoup4
+pandas
+openpyxl
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl

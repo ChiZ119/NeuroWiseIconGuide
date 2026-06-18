@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>StepByStep卡的demo</title>
+<style>
+/* ── EMBEDDED FONTS (no external request needed) ────────────────────────── */
+
+@import url('data:text/css,');
+
+/* Fredoka One — rounded playful display */
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/fredokaone/v14/k3kUo8kEI-tA1RRcTZGmTlHGCaen8wf-.woff2') format('woff2');
+}
+/* Nunito — friendly rounded body */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDDshRTM9jo7eTWk.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDIUhRTM9jo7eTWk.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  src: url('https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDLchRTM9jo7eTWk.woff2') format('woff2');
+}
+
+  :root {
+    --sky:   #d6f0ff;
+    --mint:  #d4f5e2;
+    --lemon: #fff9c4;
+    --peach: #ffe0cc;
+    --lilac: #ecdcff;
+    --coral: #ff6b6b;
+    --teal:  #00bfa5;
+    --navy:  #1a2e4a;
+    --card-radius: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', 'Arial Rounded MT Bold', sans-serif;
+    background: linear-gradient(160deg, #e8f7ff 0%, #fef9ff 50%, #e8fff4 100%);
+    min-height: 100vh;
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  header {
+    background: var(--navy);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.18);
+  }
+  header .logo { font-size: 2rem; }
+  header h1 {
+    font-family: 'Fredoka One', 'Arial Rounded MT Bold', cursive;
+    font-size: 1.75rem;
+    color: #fff;
+    letter-spacing: .5px;
+  }
+  header p { font-size: .85rem; color: #8fb8d8; font-weight: 700; margin-top: 2px; }
+
+  /* ── MODE BANNER ── */
+  #mode-banner {
+    text-align: center;
+    padding: 10px 16px;
+    font-size: .85rem;
+    font-weight: 700;
+    display: none;
+    background: #fffbe6;
+    border-bottom: 2px solid #ffe082;
+    color: #7a5c00;
+  }
+  #mode-banner.visible { display: block; }
+  #mode-banner.success {
+    background: #d4f5e2;
+    border-bottom: 2px solid #00bfa5;
+    color: #00695c;
+  }
+
+  main {
+    max-width: 780px;
+    margin: 36px auto;
+    padding: 0 20px 80px;
+  }
+
+  .search-wrap {
+    background: #fff;
+    border-radius: 60px;
+    padding: 8px 8px 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 28px rgba(0,100,180,.13);
+    margin-bottom: 28px;
+  }
+  .search-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    background: transparent;
+  }
+  .search-wrap input::placeholder { color: #b0c4d8; font-weight: 600; }
+  .search-wrap button {
+    background: var(--coral);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 26px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: transform .12s, background .15s;
+  }
+  .search-wrap button:hover { background: #e84545; transform: scale(1.04); }
+  .search-wrap button:active { transform: scale(.97); }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .chip {
+    background: #fff;
+    border: 2.5px solid transparent;
+    border-radius: 30px;
+    padding: 7px 16px;
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .15s;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    font-family: 'Nunito', sans-serif;
+  }
+  .chip:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+  #result { animation: fadeUp .35s ease both; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0);    }
+  }
+
+  .result-title {
+    font-family: 'Fredoka One', 'Arial Rounded MT Bold', cursive;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    color: var(--navy);
+  }
+  .result-subtitle {
+    font-size: .88rem;
+    color: #7a92a8;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .steps-grid { display: grid; gap: 16px; }
+
+  .step-card {
+    background: #fff;
+    border-radius: var(--card-radius);
+    padding: 18px 20px 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.07);
+    border-left: 6px solid var(--teal);
+    animation: slideIn .3s ease both;
+  }
+  @keyframes slideIn {
+    from { opacity:0; transform:translateX(-14px); }
+    to   { opacity:1; transform:translateX(0);     }
+  }
+
+  .step-num {
+    min-width: 42px; height: 42px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .step-body { flex: 1; }
+  .step-text { font-size: 1.05rem; font-weight: 700; line-height: 1.4; color: var(--navy); }
+
+  /* Highlight for entity words that have a matched image.
+     Soft, low-stimulus colors (teal for odd cards, coral-peach for even),
+     no underline, no bright text color — just a faint tinted background
+     and a rounded outline so the word still reads naturally. */
+  .step-text mark.entity-hl {
+    background: rgba(0, 191, 165, 0.14);   /* teal @ 14% */
+    color: inherit;
+    padding: 1px 5px;
+    border-radius: 6px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  /* Missing entities (no image found) — use a muted gray so users can
+     still tell which words SHOULD have been illustrated. */
+  .step-text mark.entity-hl.missing {
+    background: rgba(160, 170, 185, 0.18);
+    color: #6b7a8c;
+  }
+  .step-image-tag {
+    display: inline-block;
+    margin-top: 5px;
+    background: var(--sky);
+    color: #2a7aa8;
+    font-size: .77rem;
+    font-weight: 800;
+    border-radius: 20px;
+    padding: 3px 10px;
+  }
+  .step-card:nth-child(even) .step-image-tag { background: var(--peach); color: #c04040; }
+  /* ── MULTI-ENTITY IMAGE ROW ── */
+  .step-card {
+    flex-wrap: wrap;   /* allow entities row to wrap below */
+  }
+  .step-card .step-num,
+  .step-card .step-body {
+    flex-shrink: 0;
+  }
+
+  /* row of entity thumbnails — spans full width below text */
+  .entities-row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eef2f7;
+  }
+
+  /* one entity card: image + label + score badge */
+  .entity-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 80px;
+  }
+  .entity-thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f0f6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 2px solid transparent;
+    transition: border-color .2s;
+  }
+  .entity-thumb:hover { border-color: var(--teal); }
+  .entity-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .entity-thumb .no-img-icon {
+    font-size: 1.8rem;
+  }
+
+  /* score badge overlaid on thumb */
+  .score-badge {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    border-radius: 8px;
+    font-size: .62rem;
+    font-weight: 800;
+    padding: 1px 5px;
+    line-height: 1.4;
+  }
+  .score-high  { background: #00bfa5; color: #fff; }
+  .score-mid   { background: #ffa726; color: #fff; }
+  .score-low   { background: #ef5350; color: #fff; }
+  .score-none  { background: #cdd5de; color: #555; }
+
+  /* entity label below thumb */
+  .entity-label {
+    font-size: .68rem;
+    font-weight: 800;
+    color: var(--navy);
+    text-align: center;
+    max-width: 76px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .entity-label.missing {
+    color: #ef5350;
+    font-style: italic;
+  }
+
+  /* missing entity placeholder thumb */
+  .entity-thumb.missing-thumb {
+    background: #fff0f0;
+    border: 2px dashed #ef9a9a;
+  }
+
+  .progress-wrap {
+    margin: 6px 0 22px;
+    background: #e4edf5;
+    border-radius: 20px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), #00e5c8);
+    border-radius: 20px;
+    transition: width 1s ease;
+  }
+
+  .empty-state { text-align: center; padding: 56px 20px; color: #8faabb; }
+  .empty-state .big-icon { font-size: 4rem; margin-bottom: 14px; }
+  .empty-state p { font-size: 1rem; font-weight: 700; line-height: 1.6; }
+
+  .source-link { margin-top: 20px; font-size: .8rem; color: #8faabb; font-weight: 700; }
+  .source-link a { color: var(--teal); text-decoration: none; }
+  .source-link a:hover { text-decoration: underline; }
+
+  #loading { display: none; text-align: center; padding: 48px; font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--teal); }
+  .spinner { width: 52px; height: 52px; border: 6px solid #d4f5e2; border-top-color: var(--teal); border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── "Show all topics" toggle under the chips ── */
+  #toggle-all {
+    background: none;
+    border: none;
+    color: var(--teal);
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    font-size: .9rem;
+    cursor: pointer;
+    margin: -22px 0 28px 4px;
+    padding: 0;
+  }
+  #toggle-all:hover { text-decoration: underline; }
+
+  /* ── AI ASSISTANT PANEL (right side) ── */
+  #assistant {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 320px;
+    background: #fff;
+    border-left: 2px solid var(--sky);
+    box-shadow: -4px 0 18px rgba(0,0,0,.08);
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+  }
+  #assistant .a-head {
+    background: var(--navy);
+    color: #fff;
+    padding: 16px 18px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+  }
+  #assistant .a-head small { display:block; font-family:'Nunito',sans-serif; font-size:.72rem; color:#8fb8d8; font-weight:700; margin-top:2px; }
+  #chat-log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #chat-log .u, #chat-log .a {
+    max-width: 85%;
+    padding: 9px 13px;
+    border-radius: 16px;
+    line-height: 1.45;
+    font-size: .95rem;
+    font-weight: 600;
+    white-space: pre-wrap;
+  }
+  #chat-log .u {
+    align-self: flex-end;
+    background: var(--coral);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+  #chat-log .a {
+    align-self: flex-start;
+    background: var(--mint);
+    color: var(--navy);
+    border-bottom-left-radius: 4px;
+  }
+  #chat-log .a.thinking { opacity: .6; font-style: italic; }
+  .a-input-row {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid var(--sky);
+  }
+  #chat-input {
+    flex: 1;
+    border: 2px solid var(--sky);
+    border-radius: 14px;
+    padding: 9px 12px;
+    font-size: .95rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    outline: none;
+    color: var(--navy);
+  }
+  #chat-input:focus { border-color: var(--teal); }
+  .a-send {
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 0 16px;
+    font-family: 'Fredoka One', cursive;
+    cursor: pointer;
+  }
+  .a-send:disabled { opacity: .5; cursor: default; }
+
+  /* Make room for the panel on wide screens; hide it on narrow ones. */
+  @media (min-width: 1000px) {
+    body { padding-right: 340px; }
+  }
+  @media (max-width: 999px) {
+    #assistant { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── CONSENT GATE — shown before the app is usable ── -->
+<div id="consent-overlay">
+  <div id="consent-box">
+    <h2>Informed Consent Form</h2>
+    <div id="consent-text">
+      <p><b>About this study:</b> You are invited to take part in evaluating a software tool that retrieves step-by-step illustrated instructions in response to a
+typed query (for example, ``brush teeth''). The system is being developed
+as part of a graduation thesis project and is intended, in the long term,
+to support users with autism spectrum disorder. This pilot is a
+first-stage evaluation with neurotypical adults; testing with the target
+user group is planned separately.
+
+Please read this form carefully and decide whether to participate.</p>
+      <p><b>What you'll do:</b> The session lasts only a few minutes and consists of: 
+        Using the website freely to search for instructions on tasks of your choice. 
+        Completing a short questionnaire about your experience after getting the results from the questions you asked. </p>
+      <p><b>Your data:</b> We collect your email, age, gender, highest education in the post task questionnaire. </p>
+      <p><b>Voluntary:</b> Participation is completely voluntary. You may stop at any time.</p>
+      <p><b>Contact:</b> If you have any questions or concerns about this study, please contact the researcher at c.zhang7@student.vu.nl or chizhang119@gmail.com before proceeding.</p>
+      
+    </div>
+    <label id="consent-check-row">
+      <input type="checkbox" id="consent-check" />
+      <span>I have read and understood the information above, and I agree to participate.</span>
+    </label>
+    <div id="consent-buttons">
+      <button id="consent-decline" type="button">Leave</button>
+      <button id="consent-agree" type="button" disabled>I agree — Start</button>
+    </div>
+  </div>
+</div>
+<style>
+  #consent-overlay {
+    position: fixed; inset: 0; z-index: 100000;
+    background: rgba(26, 46, 74, 0.55);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  #consent-box {
+    background: #fff; max-width: 560px; width: 100%;
+    max-height: 88vh; overflow-y: auto;
+    border-radius: 22px; padding: 32px 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    font-family: 'Nunito', sans-serif; color: #1a2e4a;
+  }
+  #consent-box h2 {
+    font-family: 'Fredoka One', cursive; font-size: 1.6rem;
+    margin-bottom: 16px; color: #1a2e4a;
+  }
+  #consent-text p { font-size: .95rem; line-height: 1.5; margin-bottom: 12px; }
+  #consent-check-row {
+    display: flex; gap: 10px; align-items: flex-start;
+    margin: 20px 0; font-size: .92rem; font-weight: 700; cursor: pointer;
+  }
+  #consent-check { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; cursor: pointer; }
+  #consent-buttons { display: flex; gap: 12px; justify-content: flex-end; }
+  #consent-buttons button {
+    border: none; border-radius: 50px; padding: 12px 24px;
+    font-family: 'Fredoka One', cursive; font-size: 1rem; cursor: pointer;
+    transition: transform .12s, opacity .15s;
+  }
+  #consent-decline { background: #e8eef4; color: #5a6b7d; }
+  #consent-agree { background: #00bfa5; color: #fff; }
+  #consent-agree:disabled { opacity: .45; cursor: not-allowed; }
+  #consent-agree:not(:disabled):hover { transform: scale(1.04); }
+</style>
+<script>
+  (function () {
+    const overlay = document.getElementById('consent-overlay');
+    const check   = document.getElementById('consent-check');
+    const agree   = document.getElementById('consent-agree');
+    const decline = document.getElementById('consent-decline');
+    document.body.style.overflow = 'hidden';   // lock background scroll
+    check.addEventListener('change', () => { agree.disabled = !check.checked; });
+    agree.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+    decline.addEventListener('click', () => {
+      document.body.innerHTML =
+        '<div style="font-family:Nunito,sans-serif;text-align:center;padding:90px 20px;color:#1a2e4a">' +
+        '<h2>Thank you for your time.</h2>' +
+        '<p>You have chosen not to participate. You may close this tab.</p></div>';
+    });
+  })();
+</script>
+
+<header>
+  <div class="logo">🦷</div>
+  <div>
+    <h1>SuperTeeth</h1>
+    <p>By Chi</p>
+  </div>
+</header>
+
+<!-- shown when running from file:// instead of Flask -->
+<div id="mode-banner">
+  ⚠️ Running in offline mode — using built-in data.
+  To load your real <code>knowledgeBase.json</code>, run <code>python serverOfNER.py</code> and open <strong>http://localhost:8080</strong>
+</div>
+
+<main>
+  <div class="search-wrap">
+    <input id="queryInput" type="text"
+           placeholder="of anything..."
+           onkeydown="if(event.key==='Enter') doSearch()" />
+    <button onclick="doSearch()">🔍 Show me!</button>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div id="loading"><div class="spinner"></div>Finding your steps…</div>
+  <div id="result"></div>
+</main>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// OFFLINE FALLBACK KB — used when NOT running through Flask
+// This is the same data as knowledge_base.json so the page works standalone too
+// ─────────────────────────────────────────────────────────────────────────────
+const OFFLINE_KB = {
+  "brush teeth": {
+    query: "Brush Teeth", source: "manual",
+    steps: [
+      { step: "Get your toothbrush and toothpaste.",             image: "Toothbrush",     icon: "🪥" },
+      { step: "Put a small amount of toothpaste on the brush.",  image: "Toothpaste",     icon: "🟦" },
+      { step: "Wet the toothbrush under running water.",         image: "Faucet",         icon: "🚿" },
+      { step: "Brush all surfaces of your teeth for 2 minutes.", image: "Brushing Teeth", icon: "😁" },
+      { step: "Spit out the toothpaste into the sink.",          image: "Sink",           icon: "🪣" },
+      { step: "Rinse your mouth with a cup of water.",           image: "Cup of Water",   icon: "💧" },
+    ]
+  },
+  "wash hands": {
+    query: "Wash Hands", source: "https://www.wikihow.com/Wash-Your-Hands",
+    steps: [
+      { step: "Turn on the faucet and wet your hands.",           image: "Faucet",        icon: "🚿" },
+      { step: "Apply soap to your palms.",                        image: "Soap",          icon: "🧼" },
+      { step: "Rub hands together for at least 20 seconds.",      image: "Washing Hands", icon: "👐" },
+      { step: "Rinse your hands thoroughly under running water.", image: "Faucet",        icon: "💧" },
+      { step: "Dry hands with a clean towel.",                    image: "Towel",         icon: "🏳️" },
+    ]
+  },
+  "wash face": {
+    query: "Wash Face", source: "https://www.wikihow.com/Wash-Your-Face",
+    steps: [
+      { step: "Wet your face with lukewarm water.",          image: "Faucet",       icon: "💦" },
+      { step: "Apply a mild cleanser in circular motions.",  image: "Washing Face", icon: "🧴" },
+      { step: "Rinse your face thoroughly.",                 image: "Washing Face", icon: "🚿" },
+      { step: "Pat your face dry gently with a towel.",      image: "Towel",        icon: "🏳️" },
+      { step: "Apply moisturizer to keep skin hydrated.",    image: "Moisturizer",  icon: "✨" },
+    ]
+  },
+  "take a shower": {
+    query: "Take a Shower", source: "manual",
+    steps: [
+      { step: "Turn on the shower and adjust the temperature.",     image: "Shower",  icon: "🚿" },
+      { step: "Wet your hair and body.",                            image: "Shower",  icon: "💦" },
+      { step: "Apply shampoo and gently wash your hair.",           image: "Shampoo", icon: "🧴" },
+      { step: "Rinse out the shampoo completely.",                  image: "Shower",  icon: "🚿" },
+      { step: "Apply body wash and scrub your body.",               image: "Soap",    icon: "🧼" },
+      { step: "Rinse off all the soap.",                            image: "Shower",  icon: "💧" },
+      { step: "Turn off the shower and dry yourself with a towel.", image: "Towel",   icon: "🏳️" },
+    ]
+  },
+  "make the bed": {
+    query: "Make the Bed", source: "https://www.wikihow.com/Make-a-Bed",
+    steps: [
+      { step: "Remove all blankets and pillows from the bed.",                 image: "Pillow",    icon: "🛏️" },
+      { step: "Straighten the fitted sheet so it covers the mattress evenly.", image: "Bed Sheet", icon: "🛏️" },
+      { step: "Spread the flat sheet over the fitted sheet.",                  image: "Bed Sheet", icon: "🛏️" },
+      { step: "Place the blanket or duvet on top.",                            image: "Blanket",   icon: "🧸" },
+      { step: "Arrange your pillows neatly at the head of the bed.",           image: "Pillow",    icon: "🌙" },
+    ]
+  },
+  "tie shoelaces": {
+    query: "Tie Shoelaces", source: "https://www.wikihow.com/Tie-Your-Shoes",
+    steps: [
+      { step: "Cross the right lace over the left lace.",  image: "Shoelaces", icon: "👟" },
+      { step: "Pull the right lace under and through.",    image: "Shoelaces", icon: "👟" },
+      { step: "Make a loop with one lace.",                image: "Shoelaces", icon: "🔄" },
+      { step: "Wrap the other lace around the loop.",      image: "Shoelaces", icon: "🔄" },
+      { step: "Push it through to make a second loop.",    image: "Shoelaces", icon: "🔄" },
+      { step: "Pull both loops tight.",                    image: "Shoelaces", icon: "✅" },
+    ]
+  },
+  "sweep the floor": {
+    query: "Sweep the Floor", source: "https://www.wikihow.com/Sweep-a-Floor",
+    steps: [
+      { step: "Clear the area of any chairs or objects.",         image: "Room",      icon: "🪑" },
+      { step: "Use short, deliberate strokes with the broom.",    image: "Broom",     icon: "🧹" },
+      { step: "Work from the edges toward the center.",           image: "Room",      icon: "🏠" },
+      { step: "Sweep the pile into a dustpan.",                   image: "Dustpan",   icon: "🧹" },
+      { step: "Empty the dustpan into a trash bin.",              image: "Trash Bin", icon: "🗑️" },
+    ]
+  },
+  "pack the schoolbag": {
+    query: "Pack the Schoolbag", source: "manual",
+    steps: [
+      { step: "Check your timetable to see which books you need.", image: "Timetable",    icon: "📅" },
+      { step: "Place your textbooks and notebooks in the bag.",    image: "Backpack",     icon: "📚" },
+      { step: "Add your pencil case.",                             image: "Pencil Case",  icon: "✏️" },
+      { step: "Pack your water bottle.",                           image: "Water Bottle", icon: "💧" },
+      { step: "Close all the zippers on your bag.",                image: "Backpack",     icon: "🎒" },
+    ]
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DETECT whether we're served by Flask or opened as a local file
+// ─────────────────────────────────────────────────────────────────────────────
+const IS_SERVER = window.location.protocol !== 'file:';
+let KB = null;   // will hold the loaded knowledge base
+
+async function loadKB() {
+  if (IS_SERVER) {
+    console.log('🌐 Detected server mode — fetching /api/knowledgeBase ...');
+    try {
+      const res = await fetch('/api/knowledgeBase');
+      console.log('📡 Response status:', res.status);
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Server returned ${res.status}: ${errText}`);
+      }
+      const data = await res.json();
+      // Check if server itself returned an error object
+      if (data.error) throw new Error('Server error: ' + data.error);
+      KB = data;
+      const keys = Object.keys(KB);
+      console.log(`✅ Loaded ${keys.length} entries from knowledge_base.json:`, keys);
+      // Show green success banner briefly
+      showBanner(`✅ Loaded ${keys.length} topics from knowledge_base.json: ${keys.join(', ')}`, true);
+      setTimeout(() => document.getElementById('mode-banner').classList.remove('visible'), 4000);
+    } catch (e) {
+      console.error('❌ Failed to load KB from server:', e);
+      KB = OFFLINE_KB;
+      showBanner(`⚠️ knowledge base not loaded (${e.message}) — using built-in demo data. Check http://127.0.0.1:8080/api/debug`);
+    }
+  } else {
+    KB = OFFLINE_KB;
+    document.getElementById('mode-banner').classList.add('visible');
+  }
+  buildChips();
+}
+
+function showBanner(msg, success = false) {
+  const b = document.getElementById('mode-banner');
+  b.textContent = msg;
+  b.classList.add('visible');
+  if (success) b.classList.add('success');
+  else b.classList.remove('success');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SEARCH — calls Flask /api/search if on serverOfNER, else matches locally
+// ─────────────────────────────────────────────────────────────────────────────
+async function doSearch() {
+  const q = document.getElementById('queryInput').value.trim();
+  if (!q) return;
+  showLoading();
+
+  if (IS_SERVER) {
+    // Live-search may take 5-15s the first time a query is seen.
+    const liveMsgTimer = setTimeout(() => {
+      const el = document.getElementById('loading');
+      if (el) el.innerHTML = '<div class="big-icon">🌐</div><p>Searching WikiHow live — this may take 10 seconds…</p>';
+    }, 1500);
+
+    try {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+      clearTimeout(liveMsgTimer);
+      // 404 means "we honestly don't have this" — pass the server's
+      // structured payload through so renderResult can show the right
+      // message instead of the generic "I don't know" fallback.
+      if (res.status === 404) {
+        const payload = await res.json().catch(() => null);
+        renderResult(payload || { error: 'not_found' }, q);
+        return;
+      }
+      if (!res.ok) { renderResult(null, q); return; }
+      const data = await res.json();
+      renderResult(data, q);
+    } catch (e) {
+      clearTimeout(liveMsgTimer);
+      renderResult(localMatch(q), q);
+    }
+  } else {
+    // small delay so the spinner feels intentional
+    await new Promise(r => setTimeout(r, 380));
+    renderResult(localMatch(q), q);
+  }
+}
+
+function normalize(s) { return s.toLowerCase().replace(/[^a-z ]/g, '').trim(); }
+
+// Escape user-supplied text before injecting into innerHTML. We need this
+// because the step text is now built with HTML (the <mark> tags around
+// entity words) rather than assigned as textContent.
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function localMatch(input) {
+  const q = normalize(input);
+  if (KB[q]) return KB[q];
+  let best = null, bestScore = 0;
+  const qWords = new Set(q.split(' '));
+  for (const [key, entry] of Object.entries(KB)) {
+    const kWords = new Set(key.split(' '));
+    const shared = [...qWords].filter(w => kWords.has(w)).length;
+    const score = shared / Math.max(kWords.size, qWords.size);
+    if (score > bestScore) { bestScore = score; best = entry; }
+  }
+  return bestScore >= 0.4 ? best : null;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────────────────────────────────────
+function showLoading() {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').innerHTML = '';
+}
+
+function renderResult(data, q) {
+  document.getElementById('loading').style.display = 'none';
+  const el = document.getElementById('result');
+
+  // Honest "we don't have it yet" response from the server.
+  if (data && data.origin === 'no_results') {
+    el.innerHTML = `
+      <div class="empty-state">
+        <div class="big-icon">🔍</div>
+        <p>We searched WikiHow but couldn't find instructions for
+        "<strong>${escapeHtml(q)}</strong>" yet.<br>
+        This topic will be added in a future update.</p>
+      </div>`;
+    return;
+  }
+
+  if (!data || data.error) {
+    const keys = Object.values(KB).map(v => v.query).join(', ');
+    el.innerHTML = `
+      <div class="empty-state">
+        <div class="big-icon">🤔</div>
+        <p>Hmm, I don't know "<strong>${escapeHtml(q)}</strong>" yet.<br>
+        Try: ${keys}</p>
+      </div>`;
+    return;
+  }
+
+  // Let the AI helper know what's currently on screen.
+  window.currentTask  = data.query || q;
+  window.currentSteps = (data.steps || []).map(s => s.step);
+
+  const total = data.steps.length;
+  const sourceHtml = (data.source && data.source !== 'manual')
+    ? `<div class="source-link">Source: <a href="${data.source}" target="_blank">${data.source}</a></div>`
+    : `<div class="source-link">Source: curated steps</div>`;
+
+  // Approximate match banner — shown when the server fell through to its
+  // weak fuzzy stage (e.g. "bubble tea" -> "herbal tea"). We want to be
+  // honest with the user that this is the closest match, not THE answer.
+  const approxHtml = data.approximate_match
+    ? `<div style="background:#fff9c4;border:2px solid #ffd54f;border-radius:14px;
+                   padding:12px 16px;margin-bottom:18px;font-weight:700;
+                   color:#7a5c00;font-size:.95rem">
+         ⚠️ We don't have exact steps for "<strong>${escapeHtml(q)}</strong>" yet.
+         Showing the closest topic we know: <strong>${escapeHtml(data.query)}</strong>.
+       </div>`
+    : '';
+
+  const stepCards = data.steps.map((s, i) => {
+    // Build entity thumbnails row
+    const entities = s.entities || [];
+    const matched   = entities.filter(e => e.matched);
+    const unmatched = entities.filter(e => !e.matched);
+
+    // ── Highlight entity words inside the step text ──
+    // Backend gives us char offsets (`start`, `end`) for each entity.
+    // We walk the sentence left-to-right and wrap each entity span in a
+    // <mark> tag. Skips overlapping spans (NER + noun-chunk for the same
+    // word) by tracking the last `end` we've consumed.
+    function highlightStep(text, ents) {
+      // sort by start, skip any without offsets (legacy cached entries)
+      const spans = ents
+        .filter(e => Number.isInteger(e.start) && Number.isInteger(e.end))
+        .slice()
+        .sort((a, b) => a.start - b.start);
+      if (spans.length === 0) return escapeHtml(text);
+
+      let out = '';
+      let cursor = 0;
+      for (const e of spans) {
+        if (e.start < cursor) continue;  // overlapping span — skip
+        out += escapeHtml(text.slice(cursor, e.start));
+        const cls = e.matched ? 'entity-hl' : 'entity-hl missing';
+        const tooltip = e.matched
+          ? `${e.image} (${Math.round(e.score * 100)}%)`
+          : 'no image found';
+        out += `<mark class="${cls}" title="${escapeHtml(tooltip)}">${escapeHtml(text.slice(e.start, e.end))}</mark>`;
+        cursor = e.end;
+      }
+      out += escapeHtml(text.slice(cursor));
+      return out;
+    }
+
+    // Score badge colour
+    function badgeClass(score) {
+      if (score >= 0.8) return 'score-high';
+      if (score >= 0.5) return 'score-mid';
+      if (score >  0.0) return 'score-low';
+      return 'score-none';
+    }
+
+    // Render one matched entity thumbnail.
+    // Label = the surface text from the sentence (what the user actually reads).
+    // The image filename / title sits in the `title` attribute so hovering
+    // reveals the underlying library image — that's the debug affordance
+    // the leader asked for ("白色把原始的file 名字带出来，用鼠标划词的时候才能看见").
+    function matchedCard(e) {
+      const pct = Math.round(e.score * 100);
+      const debugInfo = `image: ${e.image} (${e.file_name || ''})`;
+      return `
+        <div class="entity-card">
+          <div class="entity-thumb" title="${debugInfo}">
+            <img src="${e.image_url}" alt="${e.image}"
+                 onload="this.style.opacity=1"
+                 onerror="this.style.display='none'" />
+            <span class="score-badge ${badgeClass(e.score)}">${pct}%</span>
+          </div>
+          <span class="entity-label" title="${debugInfo}">${e.chunk}</span>
+        </div>`;
+    }
+
+    // Render one missing entity placeholder.
+    // Below-threshold entities still show as a red ? card, but the badge
+    // says N/A instead of 0% — easier to read than a numeric zero.
+    function missingCard(e) {
+      return `
+        <div class="entity-card">
+          <div class="entity-thumb missing-thumb">
+            <span class="no-img-icon">❓</span>
+            <span class="score-badge score-none">N/A</span>
+          </div>
+          <span class="entity-label missing" title="${e.chunk}">${e.chunk}</span>
+        </div>`;
+    }
+
+    // Summary line under step text
+    const matchCount = matched.length;
+    const missCount  = unmatched.length;
+    const summaryColor = missCount > 0 ? '#ef5350' : '#00bfa5';
+    const summaryText  = missCount > 0
+      ? `${matchCount} matched · <span style="color:#ef5350">${missCount} missing image${missCount>1?'s':''}</span>`
+      : `${matchCount} image${matchCount!==1?'s':''} matched ✓`;
+
+    // Render entities in the ORDER they appear in the sentence
+    // (backend already sorts them this way). Mixing matched + unmatched in
+    // reading order is what the leader asked for — easier to follow than
+    // "all green cards first, then all red cards".
+    const entityCards = entities.map(e =>
+      e.matched ? matchedCard(e) : missingCard(e)
+    ).join('');
+
+    const entitiesRow = entities.length > 0 ? `
+      <div class="entities-row">
+        ${entityCards}
+      </div>` : '';
+
+    return `
+    <div class="step-card" style="animation-delay:${i * 55}ms">
+      <div class="step-num">${i + 1}</div>
+      <div class="step-body">
+        <div class="step-text">${highlightStep(s.step, entities)}</div>
+        <div style="font-size:.75rem;font-weight:700;margin-top:4px;color:#8faabb">${summaryText}</div>
+      </div>
+      ${entitiesRow}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    ${approxHtml}
+    <div class="result-title">✨ How to ${data.query}</div>
+    <div class="result-subtitle">${total} steps · Let's go!</div>
+    <div class="progress-wrap"><div class="progress-bar" id="pb" style="width:0%"></div></div>
+    <div class="steps-grid">${stepCards}</div>
+    ${sourceHtml}`;
+
+  requestAnimationFrame(() => setTimeout(() => {
+    const pb = document.getElementById('pb');
+    if (pb) pb.style.width = '100%';
+  }, 80));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CHIPS — built from whatever KB is loaded
+// ─────────────────────────────────────────────────────────────────────────────
+const CHIP_COLORS = ['#d6f0ff','#ffe0cc','#d4f5e2','#fff9c4','#ecdcff','#ffd6d6','#d6ffe8','#fff0d6'];
+
+// We now show only the top 10 most-searched topics by default (from
+// /api/popular), with a "Show all topics" toggle that reveals the rest.
+// The full list still lives in the KB and any topic is reachable by typing.
+let _popularLabels = [];
+let _allLabels     = [];
+let _showingAll     = false;
+
+function renderChips(labels) {
+  const el = document.getElementById('chips');
+  el.innerHTML = '';
+  labels.forEach((label, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.style.background = CHIP_COLORS[i % CHIP_COLORS.length];
+    btn.textContent = label;
+    btn.onclick = () => {
+      document.getElementById('queryInput').value = label;
+      doSearch();
+    };
+    el.appendChild(btn);
+  });
+}
+
+function ensureToggle(show) {
+  let t = document.getElementById('toggle-all');
+  if (!show) { if (t) t.remove(); return; }
+  if (!t) {
+    t = document.createElement('button');
+    t.id = 'toggle-all';
+    t.onclick = toggleAllChips;
+    document.getElementById('chips').after(t);
+  }
+  t.textContent = _showingAll ? 'Show fewer ▴' : `Show all topics (${_allLabels.length}) ▾`;
+}
+
+function toggleAllChips() {
+  _showingAll = !_showingAll;
+  renderChips(_showingAll ? _allLabels : _popularLabels);
+  ensureToggle(true);
+}
+
+async function buildChips() {
+  _allLabels = Object.values(KB).map(v => v.query);
+  _popularLabels = _allLabels.slice(0, 10);   // fallback if /api/popular is unavailable
+
+  if (IS_SERVER) {
+    try {
+      const res = await fetch('/api/popular');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length) _popularLabels = data;
+      }
+    } catch (e) { /* keep the fallback slice */ }
+  }
+
+  _showingAll = false;
+  renderChips(_popularLabels);
+  ensureToggle(_allLabels.length > _popularLabels.length);
+}
+
+// ── boot ────────────────────────────────────────────────────────────────────
+loadKB();
+</script>
+
+<!-- ── AI ASSISTANT PANEL ── -->
+<aside id="assistant">
+  <div class="a-head">💬 Helper<small>Ask me about the steps</small></div>
+  <div id="chat-log">
+    <div class="a">Hi! Pick a task, then ask me anything about it. 😊</div>
+  </div>
+  <div class="a-input-row">
+    <input id="chat-input" placeholder="Type your question…"
+           onkeydown="if(event.key==='Enter') sendChat()" />
+    <button class="a-send" id="chat-send" onclick="sendChat()">Send</button>
+  </div>
+</aside>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// AI ASSISTANT — talks to /api/chat (DeepSeek on the backend)
+// currentTask / currentSteps are set inside renderResult() so the helper knows
+// what's on screen and can answer "what does step 3 mean?".
+// ─────────────────────────────────────────────────────────────────────────────
+window.currentTask  = '';
+window.currentSteps = [];
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const btn   = document.getElementById('chat-send');
+  const log   = document.getElementById('chat-log');
+  const msg   = input.value.trim();
+  if (!msg) return;
+
+  input.value = '';
+  btn.disabled = true;
+
+  const u = document.createElement('div');
+  u.className = 'u'; u.textContent = msg;
+  log.appendChild(u);
+
+  const a = document.createElement('div');
+  a.className = 'a thinking'; a.textContent = 'thinking…';
+  log.appendChild(a);
+  log.scrollTop = log.scrollHeight;
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: msg,
+        task:    window.currentTask,
+        steps:   window.currentSteps,
+      }),
+    });
+    const data = await res.json();
+    a.classList.remove('thinking');
+    a.textContent = data.reply || '…';
+  } catch (e) {
+    a.classList.remove('thinking');
+    a.textContent = "Sorry, I can't answer right now. (Is the server running?)";
+  } finally {
+    btn.disabled = false;
+    log.scrollTop = log.scrollHeight;
+  }
+}
+</script>
+
+<!-- ── Post task survey ── -->
+<a id="survey-btn" href="https://forms.gle/4E3xisRoRpUeo3ZM7" target="_blank" rel="noopener">
+  <span class="survey-emoji">📋</span>
+  <span class="survey-text">Finished trying NeuroWise IconGuide?<br><b>Take our 2-min survey (thankssss)</b></span>
+</a>
+<style>
+  #survey-btn {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: none;                 /* hidden until the user runs a search */
+    align-items: center;
+    gap: 12px;
+    max-width: 280px;
+    background: #fff;
+    color: #1a2e4a;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: .92rem;
+    line-height: 1.3;
+    padding: 14px 20px;
+    border-radius: 50px;
+    border-left: 6px solid #00bfa5;
+    box-shadow: 0 6px 24px rgba(0,100,180,.22);
+    transition: transform .15s, box-shadow .15s;
+  }
+  #survey-btn.show { display: flex; animation: surveyPop .5s ease both; }
+  #survey-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,100,180,.30); }
+  #survey-btn .survey-emoji { font-size: 1.6rem; }
+  @keyframes surveyPop {
+    from { opacity: 0; transform: translateY(20px) scale(.9); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @media (max-width: 520px) {
+    #survey-btn { left: 12px; right: 12px; bottom: 12px; max-width: none; }
+  }
+</style>
+<script>
+  // Reveal the survey invite the first time a result appears
+  // (i.e. after the user actually searches a task).
+  (function () {
+    const result = document.getElementById('result');
+    const btn = document.getElementById('survey-btn');
+    if (!result || !btn) return;
+    const obs = new MutationObserver(() => {
+      if (result.children.length > 0) {
+        btn.classList.add('show');
+        obs.disconnect();
+      }
+    });
+    obs.observe(result, { childList: true });
+  })();
+</script>
+
+</body>
+</html>
