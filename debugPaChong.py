@@ -15,7 +15,7 @@ from modelLoader import NLP as _nlp, EMBED_MODEL as _model
 _BASE = os.path.dirname(os.path.abspath(__file__))
 IMAGE_LIBRARY_XLSX = os.path.join(_BASE, "xlsxFiles", "Processed_Library_info.xlsx")
 
-USE_BROWSER_FALLBACK = FALSE
+USE_BROWSER_FALLBACK = False
 
 HEADERS = {
     "User-Agent": (
