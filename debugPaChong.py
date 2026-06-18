@@ -2,6 +2,7 @@ import json
 import re
 import asyncio
 from urllib.parse import urlparse
+import os
 
 import aiohttp
 from bs4 import BeautifulSoup
