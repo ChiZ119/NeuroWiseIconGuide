@@ -161,21 +161,35 @@ def find_all_entities_for_step(
     return results
 
 
-# ── WikiHow article scraping (already aiohttp-based; unchanged) ───────────────
-async def extract_wikihow_steps(url: str, session: aiohttp.ClientSession) -> list[str]:
+async def extract_wikihow_steps(url: str, session: aiohttp.ClientSession, query_emb=None,) -> list[str]:
     try:
         async with session.get(url, headers=HEADERS) as response:
             html = await response.text()
 
         soup = BeautifulSoup(html, "html.parser")
-        steps: list[str] = []
+        method_sections = soup.select("div.section.steps")
 
-        for el in soup.select(".step"):
+        if len(method_sections) > 1 and query_emb is not None:
+            headings = []
+            for s in method_sections:
+                h = s.select_one(".mw-headline, .altblock")
+                headings.append(h.get_text(" ", strip=True) if h else "")
+            sims = util.cos_sim(
+                query_emb, _model.encode(headings, convert_to_tensor=True)
+            )[0]
+            step_container = method_sections[int(torch.argmax(sims))]
+        elif method_sections:
+            step_container = method_sections[0]    # first or the only method
+        else:
+            step_container = soup                  # no method wrapper found
+
+        steps: list[str] = []
+        for el in step_container.select(".step"):
             headline = _extract_headline(el)
             if headline and len(headline) > 5:
                 steps.append(headline)
 
-        print(f"  Steps found: {len(steps)} steps")
+        print(f"  Steps found: {len(steps)} (from {len(method_sections) or 1} method section(s))")
         if len(steps) < 2:
             return []
         return steps[:12]
@@ -188,60 +202,30 @@ def _extract_headline(step_el) -> str:
     b_tag = step_el.find("b", class_="whb")
     if not b_tag:
         return ""
-
-    parts: list[str] = [b_tag.get_text(separator=" ", strip=False)]
-
-    def _ends_sentence(s: str) -> bool:
-        return bool(re.search(r"[.!?]\s*$", s.strip()))
-
-    if _ends_sentence(parts[0]):
-        headline = re.sub(r"\[\d+\]", "", parts[0])
-        return re.sub(r"\s+", " ", headline).strip()
-
-    headline_done = False
+    text_parts = [b_tag.get_text(separator=" ", strip=False)]
     for sib in b_tag.next_siblings:
-        if headline_done:
-            break
         name = getattr(sib, "name", None)
-
-        if isinstance(sib, str):
-            text = str(sib)
-            m = re.search(r"([.!?])", text)
-            if m:
-                parts.append(text[:m.end()])
-                headline_done = True
-            else:
-                parts.append(text)
-            continue
-
-        if name is None:
-            continue
-        if name in ("br", "div", "p", "ul", "ol"):
+        if name in ("ul", "ol", "div", "p"): 
             break
         if name == "sup":
             continue
-        if name in ("script", "style", "img", "noscript"):
-            continue
-        if name in ("a", "span", "i", "em", "strong", "b"):
-            if "whb" in (sib.get("class") or []):
-                break
-            inner = sib.get_text(separator=" ", strip=False)
-            m = re.search(r"([.!?])", inner)
-            if m:
-                parts.append(inner[:m.end()])
-                headline_done = True
-            else:
-                parts.append(inner)
-            continue
-        break
+        if isinstance(sib, str):
+            text_parts.append(str(sib))
+        else:
+            text_parts.append(sib.get_text(separator=" ", strip=False))
 
-    headline = " ".join(parts)
-    headline = re.sub(r"\[\d+\]", "", headline)
-    headline = re.sub(r"\s+", " ", headline).strip()
+    text = " ".join(text_parts)
+    text = re.sub(r"\[\d+\]", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    headline = sentences[0] if sentences else text
+    if len(headline) < 25 and len(sentences) > 1:
+        headline = (headline + " " + sentences[1]).strip()
     return headline
 
 
-# ── Search: aiohttp first (fast), Playwright only as a lazy fallback ──────────
+# Search: aiohttp first (fast), Playwright only as a lazy fallback
 async def _search_wikihow_aiohttp(query: str, session: aiohttp.ClientSession) -> list[str]:
     try:
         url = f"https://en.wikihow.com/wikiHowTo?search={query.replace(' ', '+')}"
@@ -319,7 +303,7 @@ async def process_single_query(
             break
 
         print(f"\n  Processing top-ranked URL ({url_score:.3f}): {url}")
-        steps = await extract_wikihow_steps(url, session)
+        steps = await extract_wikihow_steps(url, session, query_emb)
         if not steps:
             print("  No steps extracted, trying next URL")
             continue
