@@ -199,23 +199,12 @@ async def extract_wikihow_steps(url: str, session: aiohttp.ClientSession, query_
 
 
 def _extract_headline(step_el) -> str:
-    b_tag = step_el.find("b", class_="whb")
-    if not b_tag:
-        return ""
-    text_parts = [b_tag.get_text(separator=" ", strip=False)]
-    for sib in b_tag.next_siblings:
-        name = getattr(sib, "name", None)
-        if name in ("ul", "ol", "div", "p"): 
-            break
-        if name == "sup":
-            continue
-        if isinstance(sib, str):
-            text_parts.append(str(sib))
-        else:
-            text_parts.append(sib.get_text(separator=" ", strip=False))
+    for junk in step_el.find_all(["ul", "ol", "sup", "script", "style"]):
+        junk.extract()
 
-    text = " ".join(text_parts)
-    text = re.sub(r"\[\d+\]", "", text)
+    text = step_el.get_text(separator=" ", strip=True)
+    text = re.sub(r"\[\d+\]", "", text) 
+    text = re.sub(r"\s+([.!?,;:])", r"\1", text)
     text = re.sub(r"\s+", " ", text).strip()
 
     sentences = re.split(r"(?<=[.!?])\s+", text)
