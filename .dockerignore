@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 .git/
 .env
+eval/
+pictograms/legacy-size-512/
+pictograms/*/arasaac_all_*.json

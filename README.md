@@ -101,6 +101,13 @@ The Python files in this repository are the application logic. To run end-to-end
 
 `knowledgeBase.json` and `crawlerOutput.json` are included.
 
+### Picture libraries after the thesis
+
+The matching can now run on any picture library (ARASAAC, your own folder, or a mix),
+with text, context, CLIP-image and hybrid modes, action pictograms, and an evaluation
+script. It is switched on with the `PICTO_LIBRARY` environment variable; without it the
+app behaves exactly as described above. See **[PICTOGRAMS.md](PICTOGRAMS.md)**.
+
 ---
 
 ## Setup and running locally

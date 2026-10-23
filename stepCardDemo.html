@@ -322,6 +322,25 @@
     font-style: italic;
   }
 
+  /* action pictogram (verb), shown first in the row — new libraries only */
+  .entity-card.action-card .entity-thumb {
+    background: #f3edff;
+    border: 2px solid #b39ddb;
+  }
+  .entity-label.action { color: #5e35b1; }
+
+  /* licence attribution of the picture library (e.g. ARASAAC) */
+  #picto-attribution {
+    display: none;
+    max-width: 900px;
+    margin: 28px auto 18px;
+    padding: 0 16px;
+    font-size: .72rem;
+    color: #8faabb;
+    text-align: center;
+    line-height: 1.5;
+  }
+
   /* missing entity placeholder thumb */
   .entity-thumb.missing-thumb {
     background: #fff0f0;
@@ -927,9 +946,21 @@ function renderResult(data, q) {
       e.matched ? matchedCard(e) : missingCard(e)
     ).join('');
 
-    const entitiesRow = entities.length > 0 ? `
+    // Action pictogram for the whole step ("brush teeth"), if the library has one.
+    const a = s.action;
+    const actionCard = a ? `
+        <div class="entity-card action-card">
+          <div class="entity-thumb" title="action: ${escapeHtml(a.image)} (${escapeHtml(a.phrase)})">
+            <img src="${a.image_url}" alt="${escapeHtml(a.phrase)}"
+                 onload="this.style.opacity=1"
+                 onerror="this.style.display='none'" />
+          </div>
+          <span class="entity-label action" title="${escapeHtml(a.phrase)}">${escapeHtml(a.phrase)}</span>
+        </div>` : '';
+
+    const entitiesRow = (entities.length > 0 || actionCard) ? `
       <div class="entities-row">
-        ${entityCards}
+        ${actionCard}${entityCards}
       </div>` : '';
 
     return `
@@ -1162,6 +1193,21 @@ async function sendChat() {
     });
     obs.observe(result, { childList: true });
   })();
+</script>
+
+<div id="picto-attribution"></div>
+<script>
+  // Show the picture library's licence attribution (required for ARASAAC).
+  fetch('/api/library_info')
+    .then(r => r.ok ? r.json() : null)
+    .then(info => {
+      if (info && info.attribution) {
+        const el = document.getElementById('picto-attribution');
+        el.textContent = info.attribution;
+        el.style.display = 'block';
+      }
+    })
+    .catch(() => {});
 </script>
 
 </body>

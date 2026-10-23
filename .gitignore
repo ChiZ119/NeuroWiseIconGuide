@@ -223,3 +223,10 @@ __pycache__/
 
 size-512/images/
 __pycache__/
+# Picture libraries (see PICTOGRAMS.md): images and the raw ARASAAC dump are
+# downloaded again at build time, only items.json / index.npz / build_info.json
+# are committed. The old library's index stays local (licence unknown).
+pictograms/*/images/
+pictograms/*/arasaac_all_*.json
+pictograms/*/failed_downloads.txt
+pictograms/legacy-size-512/

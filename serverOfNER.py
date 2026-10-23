@@ -11,7 +11,8 @@ from modelLoader import EMBED_MODEL
 from sentence_transformers import util
 
 from debugPaChong import run_retrieval_system
-from nerExtractor import extract_and_match
+from nerExtractor import extract_and_match, extract_and_match_index, match_action_index
+from pictogramIndex import get_active_index
 
 from openai import OpenAI
 
@@ -35,8 +36,11 @@ def _chat_allowed(ip: str) -> bool:
     _global_day["count"] += 1
     return True
 
+_AI_KEY = os.environ.get("ChiBscProject", "")
 _AI_CLIENT = OpenAI(
-    api_key=os.environ.get("ChiBscProject", ""),
+    # newer openai versions refuse an empty key at start-up, so pass a
+    # placeholder and check _AI_KEY instead (chat stays off without a key)
+    api_key=_AI_KEY or "not-set",
     base_url="https://api.deepseek.com",   # OpenAI-compatible endpoint
 )
 AI_MODEL = "deepseek-v4-flash"
@@ -46,6 +50,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 IMAGE_LIBRARY_DIR = os.path.join(BASE_DIR, "size-512")
 IMAGE_FOLDER      = os.path.join(IMAGE_LIBRARY_DIR, "images")
+
+# New picture library (ARASAAC etc.). Set PICTO_LIBRARY=pictograms/arasaac-en to
+# use it; leave it unset to run exactly the thesis version with size-512.
+PICTO_INDEX = get_active_index()
+LIBRARY_ID  = PICTO_INDEX.library_id if PICTO_INDEX else "legacy-size-512"
 
 _live_search_lock = threading.Lock()
 SCORE_THRESHOLD = 0.5
@@ -86,6 +95,8 @@ IMAGE_INDEX, ALL_TITLES = load_image_index()
 # ── KB enrichment ───────────────────────────────────────────────────────────
 
 def find_all_entities_for_step(step_text: str) -> list[dict]:
+    if PICTO_INDEX is not None:
+        return extract_and_match_index(step_text, PICTO_INDEX)
     return extract_and_match(step_text, ALL_TITLES, threshold=SCORE_THRESHOLD)
 
 
@@ -100,9 +111,17 @@ def enrich_steps(entry: dict, query: str = "") -> tuple[dict, bool]:
             isinstance(existing, list)
             and all(isinstance(e, dict) and "image_url" in e and "start" in e
                     for e in existing)
+            # cached pictures must come from the library that is running now
+            and step.get("picto_library", "legacy-size-512") == LIBRARY_ID
         )
         if not is_fresh:
             step["entities"] = find_all_entities_for_step(step.get("step", ""))
+            if PICTO_INDEX is not None:
+                step["action"] = match_action_index(step.get("step", ""), PICTO_INDEX)
+                step["picto_library"] = LIBRARY_ID
+            else:
+                step.pop("action", None)
+                step.pop("picto_library", None)
             was_enriched = True
 
         matched = [e for e in step["entities"] if e.get("matched")]
@@ -232,6 +251,34 @@ def serve_image(filename):
     return send_from_directory(IMAGE_FOLDER, filename)
 
 
+@app.route("/pictos/<path:item_id>")
+def serve_pictogram(item_id):
+    """Pictures of the new libraries, addressed by a stable id (e.g. arasaac:2694)."""
+    if PICTO_INDEX is None:
+        return jsonify({"error": "no PICTO_LIBRARY loaded"}), 404
+    path = PICTO_INDEX.image_path_for_id(item_id)
+    if not path or not os.path.exists(path):
+        return jsonify({"error": "unknown pictogram"}), 404
+    return send_from_directory(os.path.dirname(path), os.path.basename(path),
+                               max_age=7 * 24 * 3600)
+
+
+@app.route("/api/library_info")
+def library_info():
+    """Which picture library is running, plus the attribution its licence requires."""
+    if PICTO_INDEX is None:
+        return jsonify({"library_id": LIBRARY_ID, "name": "legacy-size-512",
+                        "attribution": "", "license": "", "mode": "text"})
+    return jsonify({
+        "library_id":  LIBRARY_ID,
+        "name":        PICTO_INDEX.name,
+        "attribution": PICTO_INDEX.info.get("attribution", ""),
+        "license":     PICTO_INDEX.info.get("license", ""),
+        "mode":        PICTO_INDEX.default_mode,
+        "size":        len(PICTO_INDEX.items),
+    })
+
+
 @app.route("/api/knowledgeBase")
 def knowledgeBase():
     kb = load_kb()
@@ -349,7 +396,7 @@ def chat():
     if not _chat_allowed(ip):
         return jsonify({"reply": "You've reached the question limit for now. "
                                  "Please take a short break and try again later, thanks."}), 200
-    if not _AI_CLIENT.api_key:
+    if not _AI_KEY:
         return jsonify({"reply": "The assistant isn't set up yet "
                                  "(missing DEEPSEEK_API_KEY)."}), 200
 
@@ -429,12 +476,19 @@ def debug():
         "meta_json_found":        os.path.exists(os.path.join(IMAGE_LIBRARY_DIR, "meta.json")),
         "image_index_size":       len(IMAGE_INDEX),
         "image_library_size":     len(ALL_TITLES),
+        "picto_library":          LIBRARY_ID,
+        "picto_library_size":     len(PICTO_INDEX.items) if PICTO_INDEX else None,
+        "picto_mode":             PICTO_INDEX.default_mode if PICTO_INDEX else "text",
+        "picto_weights":          PICTO_INDEX.weights if PICTO_INDEX else None,
+        "picto_threshold":        (PICTO_INDEX.thresholds[PICTO_INDEX.default_mode]
+                                   if PICTO_INDEX else SCORE_THRESHOLD),
+        "picto_image_channel":    bool(PICTO_INDEX and PICTO_INDEX.has_image_channel),
         "score_threshold":        SCORE_THRESHOLD,
         "fuzzy_strong":           FUZZY_STRONG_THRESHOLD,
         "fuzzy_weak":             FUZZY_WEAK_THRESHOLD,
         "search_counts":          _load_counts(),
         "ai_model":               AI_MODEL,
-        "ai_key_present":         bool(_AI_CLIENT.api_key),
+        "ai_key_present":         bool(_AI_KEY),
     })
 
 
@@ -445,7 +499,7 @@ if __name__ == "__main__":
     print(" Starting WikiHow+AI server")
     print("=" * 60)
     print(f"Project folder  : {BASE_DIR}")
-    print(f"Image library   : {IMAGE_LIBRARY_DIR}")
+    print(f"Image library   : {PICTO_INDEX.library_dir if PICTO_INDEX else IMAGE_LIBRARY_DIR}")
     kb = load_kb()
     if kb:
         print(f"Knowledge base  : {list(kb.keys())}")

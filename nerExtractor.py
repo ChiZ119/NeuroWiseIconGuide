@@ -267,3 +267,57 @@ def extract_and_match(sentence, titles_with_files, threshold=0.5):
             })
         out.append(base)
     return out
+
+# ── New library-agnostic path (used when PICTO_LIBRARY is set) ────────────────
+# Same output shape as extract_and_match(), so the frontend needs no changes,
+# plus `pictogram_id` and the per-channel scores for debugging / evaluation.
+
+def extract_and_match_index(sentence, index, mode=None, threshold=None):
+    out = []
+    for ent in extract_entities(sentence):
+        hit = index.best_match(ent["lemma"], context=sentence, mode=mode,
+                               threshold=threshold)
+        base = {
+            "chunk": ent["surface"],
+            "start": ent["start"],
+            "end":   ent["end"],
+        }
+        if hit is None:
+            base.update({
+                "image": None,
+                "file_name": None,
+                "image_url": None,
+                "score": 0.0,
+                "matched": False,
+            })
+        else:
+            item = hit["item"]
+            base.update({
+                "image":        hit["keyword"].title(),
+                "file_name":    item["file_name"],
+                "image_url":    index.image_url(item),
+                "pictogram_id": item["id"],
+                "score":        round(min(hit["score"], 1.0), 3),
+                "channels":     {"text": hit["text"], "context": hit["context"],
+                                 "image": hit["image"]},
+                "matched":      True,
+            })
+        out.append(base)
+    return out
+
+
+def match_action_index(sentence, index, mode=None):
+    """Action pictogram for the whole step ("brush teeth"), or None."""
+    hit = index.best_action(sentence, NLP, mode=mode,
+                            instruction_verbs=_INSTRUCTION_VERBS)
+    if hit is None:
+        return None
+    item = hit["item"]
+    return {
+        "phrase":       hit["phrase"],
+        "image":        hit["keyword"].title(),
+        "file_name":    item["file_name"],
+        "image_url":    index.image_url(item),
+        "pictogram_id": item["id"],
+        "score":        round(min(hit["score"], 1.0), 3),
+    }

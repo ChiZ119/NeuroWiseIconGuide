@@ -1,0 +1,11 @@
+{
+  "library": "arasaac-en",
+  "n_items": 13720,
+  "n_keywords": 38483,
+  "text_model": "all-MiniLM-L6-v2",
+  "text_dim": 384,
+  "clip_model": "clip-ViT-B-32",
+  "clip_text_model": "clip-ViT-B-32",
+  "n_images_embedded": 13720,
+  "built_on": "2026-10-23T23:40"
+}

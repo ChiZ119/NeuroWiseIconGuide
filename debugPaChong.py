@@ -37,14 +37,23 @@ def load_image_meta(file_path: str) -> list[dict]:
 
 # ── Load the image library + its embeddings ONCE, at import time. ─────────────
 # This is the single biggest speed change. Everything downstream reuses these.
-_IMAGE_META: list[dict] = load_image_meta(IMAGE_LIBRARY_XLSX)
+# When PICTO_LIBRARY is set, coverage is scored against that library instead
+# (the same index the server uses), and the old spreadsheet is not loaded.
+from pictogramIndex import get_active_index
+_PICTO_INDEX = get_active_index()
+
+if _PICTO_INDEX is None:
+    _IMAGE_META: list[dict] = load_image_meta(IMAGE_LIBRARY_XLSX)
+else:
+    _IMAGE_META = []
 _IMAGE_TEXTS: list[str] = [str(img.get("entities", "")) for img in _IMAGE_META]
 if _IMAGE_TEXTS:
     _IMAGE_EMB = _model.encode(_IMAGE_TEXTS, convert_to_tensor=True)
     print(f"[debugPaChong] Image library embedded once: {len(_IMAGE_TEXTS)} items")
 else:
     _IMAGE_EMB = None
-    print("[debugPaChong] WARNING: image library empty — no image matching available")
+    if _PICTO_INDEX is None:
+        print("[debugPaChong] WARNING: image library empty — no image matching available")
 
 
 # Semantic categories that should NEVER yield a picture even if they parse as
@@ -108,6 +117,15 @@ def find_all_entities_for_step(
     Extract noun chunks from a step and match each against the (precomputed)
     image library in a single batched encode + one cos_sim matrix multiply.
     """
+    if _PICTO_INDEX is not None:
+        from nerExtractor import extract_and_match_index
+        return [{
+            "chunk": e["chunk"],
+            "entity": e["image"] if e["matched"] else None,
+            "score": e["score"],
+            "matched": e["matched"],
+        } for e in extract_and_match_index(step_text, _PICTO_INDEX)]
+
     chunks = extract_noun_chunks(step_text)
     if not chunks or _IMAGE_EMB is None:
         return [{"chunk": c, "entity": None, "score": 0.0, "matched": False}
