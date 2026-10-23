@@ -6,3 +6,7 @@ __pycache__/
 eval/
 pictograms/legacy-size-512/
 pictograms/*/arasaac_all_*.json
+size-512/
+size-512-images.zip
+pictograms/*/images/
+.DS_Store
